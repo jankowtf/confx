@@ -1,0 +1,20 @@
+default:
+  col_names:
+    .col_group: group
+  data_structures:
+    data_structure_c: [
+      col_names/.col_group,
+      col_names/.col_id,
+      col_names/.col_value
+    ]
+    data_structure_d:
+      0.0.1:
+        cols: [
+          col_names/.col_id,
+          col_names/.col_name
+        ]
+      0.0.2:
+        inherits: data_structures/data_structure_d/0.0.1
+        cols: [
+          col_names/.col_value
+        ]

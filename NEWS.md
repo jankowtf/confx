@@ -1,0 +1,30 @@
+# confx 0.0.0.9000
+
+## Summary
+
+Initial version
+
+## Fixed/closed
+
+## Changed
+
+## New
+
+- File `NEWS.md` file to track changes to the package.
+- File `BACKLOG.md` file to track backlog items
+- Package dependency `here` to `Imports:` in `DESCRIPTION`
+- Package dependency `config` to `Imports:` in `DESCRIPTION`
+- Package dependency `magrittr` to `Imports:` in `DESCRIPTION`
+- Enabled `testthat`
+- File `/config.yml`
+- File `/tests/testthat/config.yml`
+- File `/tests/testthat/config_2.yml`
+- Function `load()` (exported)
+- Function `get()` (exported)
+- Function `assign()` (exported)
+- Function `merge()` (exported)
+- Function `get_list_element_recursively()`
+- Function `has_inherited()`
+- Function `resolve_inherited()`
+- Function `merge_inherited()`
+- Function `handle_inherited()`

@@ -1,0 +1,14 @@
+default:
+  col_names:
+    .col_id: id
+    .col_name: name
+    .col_value: value
+  data_structures:
+    data_structure_a: [
+      col_names/.col_id,
+      col_names/.col_value
+    ]
+    data_structure_b: [
+      col_names/.col_name,
+      col_names/.col_value
+    ]

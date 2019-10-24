@@ -1,0 +1,26 @@
+renv::activate()
+renv::upgrade()
+
+renv::install("magrittr")
+renv::install("devtools")
+renv::install("tidyverse")
+renv::install("config")
+renv::install("here")
+
+usethis::use_package("magrittr")
+usethis::use_package("here")
+usethis::use_package("config")
+
+usethis::use_news_md()
+usethis::use_testthat()
+write(NULL, here::here("BACKLOG.md"))
+write(NULL, here::here("config.yml"))
+
+usethis::use_test("get")
+usethis::use_test("load")
+usethis::use_test("assign")
+usethis::use_test("merge")
+usethis::use_test("has_inherited")
+usethis::use_test("resolve_inherited")
+usethis::use_test("merge_inherited")
+usethis::use_test("handle_inherited")
