@@ -1,4 +1,21 @@
-# confx 0.0.0.9000
+# confx 0.0.0.9001 (development version)
+
+## Summary
+
+Initial version
+
+## Fixed/closed
+
+## Changed
+
+## New
+
+- Function `.onLoad()`
+- Function `.onAttach()`
+
+--------------------------------------------------------------------------------
+
+# confx 0.0.0.9000 (development version)
 
 ## Summary
 
