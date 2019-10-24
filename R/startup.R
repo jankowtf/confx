@@ -5,7 +5,7 @@
 
   # Load configs -----
   print(here::here())
-  # load_configs()
+  confx::load()
 
   # For plumber testing -----
   # .__STATE__ <<- new.env(parent = emptyenv()) #create .state when package is first loaded
@@ -20,7 +20,7 @@
 
   # Load configs -----
   print(here::here())
-  # load_configs()
+  confx::load()
 
   # For plumber testing -----
   # .__STATE__ <<- new.env(parent = emptyenv()) #create .state when package is first loaded
