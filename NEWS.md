@@ -2,7 +2,7 @@
 
 ## Summary
 
-Initial version
+Auto load in `.onAttach()`
 
 ## Fixed/closed
 
@@ -12,6 +12,8 @@ Initial version
 
 - Function `.onLoad()`
 - Function `.onAttach()`
+- Possibility to automatically load config files in root directory on attach
+(`.onAttach()`) controlled via env variable `CONFX_AUTO_LOAD = TRUE/FALSE`
 
 --------------------------------------------------------------------------------
 
