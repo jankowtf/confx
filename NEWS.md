@@ -1,3 +1,19 @@
+# confx 0.0.0.9003 (development version)
+
+## Summary
+
+v0.0.0.9003: Deleted /man/hello.Rd
+
+## Fixed/closed
+
+## Changed
+
+- Deleted `/man/hello.Rd`
+
+## New
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9002 (development version)
 
 ## Summary
