@@ -16,6 +16,15 @@ memory/options
 - TODO-20191026-7: Write doc for `conf_has_inherited()`
 - TODO-20191026-8: Write doc for `conf_resolve_inherited()`
 - TODO-20191026-9: Write doc for `conf_merge_inherited()`
+- TODO-20191027-1: Write doc for `conf_has_config_reference()`
+- TODO-20191027-2: Write test for `conf_has_config_reference()`
+- TODO-20191027-3: Write doc for `conf_resolve_config_reference()`
+- TODO-20191027-4: Write test for `conf_resolve_config_reference()`
+- TODO-20191027-5: Write doc for `conf_handle_config_reference()`
+- TODO-20191027-6: Write test for `conf_handle_config_reference()`
+
+
+
 
 - TODO-20191024-15: Write doc for `conf_handle_inherited()`
 

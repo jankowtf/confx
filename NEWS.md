@@ -1,3 +1,28 @@
+# confx 0.0.0.9007 (development version)
+
+## Summary
+
+v0.0.0.9007: Inter config references
+
+## Fixed/closed
+
+- Fixed warnings in doc
+
+## Changed
+
+- Robustified `conf_merge_lists()` (`!is.list()` instead of `is.vector()`) and modified for being able to also handle initial non-list inputs
+
+## New
+
+- Function `conf_has_config_reference()` for checking for inter config
+references
+- Function `conf_resolve_config_reference()` for resolving inter config
+references
+- Function `conf_handle_config_reference()` as a handler wrapper for inter
+config references
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9006 (development version)
 
 ## Summary

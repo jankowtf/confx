@@ -32,4 +32,6 @@ usethis::use_test("conf_has_inherited")
 usethis::use_test("conf_resolve_inherited")
 usethis::use_test("conf_merge_inherited")
 usethis::use_test("conf_handle_inherited")
-
+usethis::use_test("conf_has_config_reference")
+usethis::use_test("conf_resolve_config_reference")
+usethis::use_test("conf_handle_config_reference")

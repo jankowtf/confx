@@ -63,6 +63,12 @@ conf_merge_lists <- function (
   else {
     merged_list <- base_list
 
+    # Handle case when list structure is only imposed by `inherits: <reference>`:
+    if (!is_vector && !is.list(merged_list)) {
+      merged_list <- list(merged_list)
+      is_vector <- TRUE
+    }
+
     # Early exit for vectors instead of lists:
     if (is_vector) {
       return(c(merged_list, overlay_list))
@@ -73,7 +79,8 @@ conf_merge_lists <- function (
       overlay <- overlay_list[[name]]
       if (is.list(base) && is.list(overlay) && recursive) {
         merged_list[[name]] <- conf_merge_lists(base, overlay)
-      } else if (is.vector(base) && is.vector(overlay) && recursive) {
+      # } else if (is.vector(base) && is.vector(overlay) && recursive) {
+      } else if (!is.list(base) && !is.list(overlay) && recursive) {
         merged_list[[name]] <- conf_merge_lists(base, overlay, is_vector = TRUE)
       } else {
         merged_list[[name]] <- NULL
@@ -112,7 +119,8 @@ conf_has_inherited <- function(configs, name = "inherits") {
 #'
 #' @return [[list] or [character]]
 conf_resolve_inherited <- function(value_reference, from, dir_from) {
-  conf_get(value = value_reference, from = from, dir_from = dir_from)
+  config_ref <- conf_handle_config_reference(value_reference, from)
+  conf_get(value = config_ref$value, from = config_ref$from, dir_from = dir_from)
 }
 
 #' Title
@@ -145,4 +153,39 @@ conf_handle_inherited <- function(configs, from, dir_from, name = "inherits") {
   } else {
     configs
   }
+}
+
+#' Title
+#'
+#' @param value [[character]]
+#'
+#' @return [[logical]]
+conf_has_config_reference <- function(value) {
+  stringr::str_detect(value, "^.*\\.yml")
+}
+
+#' Title
+#'
+#' @param value [[character]]
+#'
+#' @return [[character]]
+conf_resolve_config_reference <- function(value) {
+  stringr::str_extract(value, "^.*\\.yml")
+}
+
+#' Title
+#'
+#' @param value [[value]]
+#' @param from [[value]]
+#'
+#' @return [[value]]
+conf_handle_config_reference <- function(value, from) {
+  if (conf_has_config_reference(value)) {
+    from <- conf_resolve_config_reference(value)
+    value <- stringr::str_remove(value, stringr::str_c(from, "/"))
+  }
+  list(
+    value = value,
+    from = from
+  )
 }

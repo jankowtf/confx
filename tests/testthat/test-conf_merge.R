@@ -37,6 +37,42 @@ test_that("conf_merge() works (inheritance explicit)", {
   )
 })
 
+# Check if `conf_merg()` doesn't interfere with standard inheritance mechanism
+# of `{config}`
+test_that("conf_merge() works (inheritance default/production)", {
+  skip_on_travis()
+  Sys.setenv(R_CONFIG_ACTIVE = "production")
+
+  conf_load(dir = test_path())
+
+  value <- "db_name"
+  from <- "config_2.yml"
+  configs <- conf_get(value, from, inheritance_handling = FALSE)
+  res <- conf_handle_inherited(configs, from)
+
+  expect_identical(res, "db_prod")
+
+  conf_load(dir = test_path())
+  # configs <- conf_get(from = from, inheritance_handling = FALSE)
+
+  value <- "data_structures/data_structure_d/0.0.2"
+  from <- "config_2.yml"
+  configs <- conf_get(value, from, inheritance_handling = FALSE)
+  res <- conf_handle_inherited(configs, from)
+
+  expect_identical(res,
+    list(cols = c(
+      "col_names/.col_id",
+      "col_names/.col_name",
+      "col_names/.col_value"
+    ),
+      inherits = "data_structures/data_structure_d/0.0.1"
+    )
+  )
+
+  Sys.setenv(R_CONFIG_ACTIVE = "default")
+})
+
 # Clean up -----
 options("config.yml" = NULL)
 options("config_2.yml" = NULL)

@@ -19,7 +19,7 @@ conf_get(value = character(), from = "config.yml",
 \item{inheritance_handling}{[[logical]]}
 }
 \value{
-[[list]]
+[[list] or [character]]
 }
 \description{
 TODO-20191026-1: Write doc for `conf_get()`

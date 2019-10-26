@@ -21,3 +21,4 @@ test_that("conf_load() works (after)", {
 
 # Clean up -----
 options("config.yml" = NULL)
+options("config_2.yml" = NULL)

@@ -8,9 +8,9 @@
 #' @param sep [[character]]
 #' @param inheritance_handling [[logical]]
 #'
-#' @return  [[list]]
+#' @return [[list] or [character]]
 #'
-#' @export [[list] or [character]]
+#' @export
 conf_get <- function(
   value = character(),
   from = "config.yml",
@@ -38,7 +38,7 @@ conf_get <- function(
   )
 
   if (inheritance_handling) {
-    conf_handle_inherited(configs, from = from, dir_from = dir_vrom)
+    conf_handle_inherited(configs, from = from, dir_from = dir_from)
     # TODO-20191024-3: Think about persisting handled inheritance entities in
     # memory/options
   } else {

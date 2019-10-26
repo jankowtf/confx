@@ -1,4 +1,5 @@
 default:
+  db_name: db_default
   col_names:
     .col_group: group
   data_structures:
@@ -13,6 +14,22 @@ default:
           col_names/.col_id,
           col_names/.col_name
         ]
+      0.0.2:
+        inherits: data_structures/data_structure_d/0.0.1
+        cols: [
+          col_names/.col_value
+        ]
+    data_structure_e:
+      inherits: config.yml/data_structures/data_structure_a
+
+test:
+  db_name: db_prod
+
+production:
+  inherits: test
+  db_name: db_prod
+  data_structures:
+    data_structure_d:
       0.0.2:
         inherits: data_structures/data_structure_d/0.0.1
         cols: [
