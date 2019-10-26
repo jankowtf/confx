@@ -1,5 +1,16 @@
+#' Get config \lifecycle{experimental}
+#'
+#' TODO-20191026-1: Write doc for `conf_get()`
+#'
+#' @param value
+#'
+#' @param from
+#' @param dir_from
+#' @param sep
+#' @param inheritance_handling
+#'
 #' @export
-get <- function(
+conf_get <- function(
   value = character(),
   from = "config.yml",
   dir_from = here::here(),
@@ -20,13 +31,13 @@ get <- function(
     return(configs)
   }
 
-  configs <- get_list_element_recursively(
+  configs <- conf_index_recursively(
     configs,
     stringr::str_split(value, sep, simplify = TRUE)
   )
 
   if (inheritance_handling) {
-    handle_inherited(configs, from = from, dir_from = dir_vrom)
+    conf_handle_inherited(configs, from = from, dir_from = dir_vrom)
     # TODO-20191024-3: Think about persisting handled inheritance entities in
     # memory/options
   } else {
@@ -34,8 +45,14 @@ get <- function(
   }
 }
 
+#' Load configs into options \lifecycle{experimental}
+#'
+#' TODO-20191026-2: Write doc for `conf_load()`
+#'
+#' @param dir
+#'
 #' @export
-load <- function(dir = here::here()) {
+conf_load <- function(dir = here::here()) {
   config_files <- fs::dir_ls(dir, type = "file", regexp = "\\.yml$")
   idx <- config_files %>%
     fs::path_file() %>%
@@ -54,8 +71,19 @@ load <- function(dir = here::here()) {
   config_files
 }
 
+#' Assign configs to local variables \lifecycle{experimental}
+#'
+#' TODO-20191026-3: Write doc for `conf_assign()`
+#'
+#' @param config_list
+#'
+#' @param env
+#' @param from
+#' @param dir_from
+#' @param sep
+#'
 #' @export
-assign <- function(
+conf_assign <- function(
   config_list,
   # env = rlang::env_parent()
   env = rlang::caller_env(),
@@ -90,8 +118,15 @@ assign <- function(
   })
 }
 
+#' Assign configs to local variables \lifecycle{experimental}
+#'
+#' TODO-20191026-4: Write doc for `conf_merge()`
+#'
+#' @param config_x
+#' @param config_y
+#'
 #' @export
-merge <- function(config_x, config_y) {
+conf_merge <- function(config_x, config_y) {
   # config::merge(config_x, config_y)
-  merge_lists(config_x, config_y)
+  conf_merge_lists(config_x, config_y)
 }

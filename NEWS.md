@@ -1,3 +1,31 @@
+# confx 0.0.0.9002 (development version)
+
+## Summary
+
+v0.0.0.9002: Prefix 'conf' in function names, Travis CI, {covr}, {lifecycle}
+
+## Fixed/closed
+
+## Changed
+
+- Renamed `load()` to `conf_load()` 
+- Renamed `get()` to `conf_get()`
+- Renamed `assign()` to `conf_assign()`
+- Renamed `merge()`  to `conf_merge()` 
+- Renamed `get_list_element_recursively()` to `conf_index_recursively()`
+- Renamed `has_inherited()` to `conf_has_inherited()`
+- Renamed `resolve_inherited()` to `conf_resolve_inherited()`
+- Renamed `merge_inherited()` to `conf_merge_inherited()`
+- Renamed `handle_inherited()` to `conf_handle_inherited()`
+
+## New
+
+- File `README.Rmd`
+- Enabled `Travis CI`
+- Enabled `{covr}`
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9001 (development version)
 
 ## Summary
@@ -29,21 +57,24 @@ Initial version
 
 ## New
 
+- File `README.Rmd`
 - File `NEWS.md` file to track changes to the package.
 - File `BACKLOG.md` file to track backlog items
 - Package dependency `here` to `Imports:` in `DESCRIPTION`
 - Package dependency `config` to `Imports:` in `DESCRIPTION`
 - Package dependency `magrittr` to `Imports:` in `DESCRIPTION`
-- Enabled `testthat`
+- Enabled `{testthat}`
+- Enabled `Travis CI`
+- Enabled `{covr}`
 - File `/config.yml`
 - File `/tests/testthat/config.yml`
 - File `/tests/testthat/config_2.yml`
-- Function `load()` (exported)
-- Function `get()` (exported)
-- Function `assign()` (exported)
-- Function `merge()` (exported)
-- Function `get_list_element_recursively()`
-- Function `has_inherited()`
-- Function `resolve_inherited()`
-- Function `merge_inherited()`
-- Function `handle_inherited()`
+- Function `conf_load()` (exported)
+- Function `conf_get()` (exported)
+- Function `conf_assign()` (exported)
+- Function `conf_merge()` (exported)
+- Function `conf_index_recursively()`
+- Function `conf_has_inherited()`
+- Function `conf_resolve_inherited()`
+- Function `conf_merge_inherited()`
+- Function `conf_handle_inherited()`

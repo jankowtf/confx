@@ -10,7 +10,7 @@
   # Load configs -----
   env_auto_load <- as.logical(Sys.getenv("CONFX_AUTO_LOAD", FALSE))
   if (env_auto_load) {
-    confx::load()
+    conf_load()
   }
 
   # For plumber testing -----

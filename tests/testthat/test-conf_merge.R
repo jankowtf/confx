@@ -1,10 +1,10 @@
-test_that("merge() works (config sets)", {
-  load(dir = test_path())
+test_that("conf_merge() works (config sets)", {
+  conf_load(dir = test_path())
 
   config_1 <- getOption("config.yml")
   config_2 <- getOption("config_2.yml")
 
-  res <- merge(config_1, config_2)
+  res <- conf_merge(config_1, config_2)
   expect_identical(length(res), length(config_1))
   expect_identical(length(res), length(config_2))
 
@@ -16,13 +16,13 @@ test_that("merge() works (config sets)", {
       length(config_2$data_structures))
 })
 
-test_that("merge() works (inheritance explicit)", {
-  load(dir = test_path())
+test_that("conf_merge() works (inheritance explicit)", {
+  conf_load(dir = test_path())
 
   value <- "data_structures/data_structure_d/0.0.2"
   from <- "config_2.yml"
-  configs <- get(value, from, inheritance_handling = FALSE)
-  res <- handle_inherited(configs, from)
+  configs <- conf_get(value, from, inheritance_handling = FALSE)
+  res <- conf_handle_inherited(configs, from)
 
   expect_identical(res,
     list(cols = c(

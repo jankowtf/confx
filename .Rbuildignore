@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^renv$
 ^renv\.lock$
+^\.travis\.yml$
+^README\.Rmd$
+^codecov\.yml$

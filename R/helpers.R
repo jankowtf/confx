@@ -1,4 +1,14 @@
-get_list_element_recursively <- function(
+#' Title
+#'
+#' TODO-20191026-5: Write doc for `conf_index_recursively()`
+#'
+#' @param lst
+#' @param el
+#' @param .el_trace
+#' @param .level_trace
+#'
+#' @return
+conf_index_recursively <- function(
   lst,
   el,
   .el_trace = el,
@@ -30,7 +40,17 @@ get_list_element_recursively <- function(
   }
 }
 
-merge_lists <- function (
+#' Title
+#'
+#' TODO-20191026-6: Write doc for `conf_merge_lists()`
+#'
+#' @param base_list
+#' @param overlay_list
+#' @param recursive
+#' @param is_vector
+#'
+#' @return
+conf_merge_lists <- function (
   base_list,
   overlay_list,
   recursive = TRUE,
@@ -52,9 +72,9 @@ merge_lists <- function (
       base <- base_list[[name]]
       overlay <- overlay_list[[name]]
       if (is.list(base) && is.list(overlay) && recursive) {
-        merged_list[[name]] <- merge_lists(base, overlay)
+        merged_list[[name]] <- conf_merge_lists(base, overlay)
       } else if (is.vector(base) && is.vector(overlay) && recursive) {
-        merged_list[[name]] <- merge_lists(base, overlay, is_vector = TRUE)
+        merged_list[[name]] <- conf_merge_lists(base, overlay, is_vector = TRUE)
       } else {
         merged_list[[name]] <- NULL
         merged_list <- append(merged_list,
@@ -70,23 +90,58 @@ merge_lists <- function (
   }
 }
 
-has_inherited <- function(configs, name = "inherits") {
+#' Title
+#'
+#' TODO-20191026-7: Write doc for `conf_has_inherited()`
+#'
+#' @param configs
+#' @param name
+#'
+#' @return
+conf_has_inherited <- function(configs, name = "inherits") {
   name %in% names(configs)
 }
 
-resolve_inherited <- function(value_reference, from, dir_from) {
-  get(value = value_reference, from = from, dir_from = dir_from)
+#' Title
+#'
+#' TODO-20191026-8: Write doc for `conf_resolve_inherited()`
+#'
+#' @param value_reference
+#' @param from
+#' @param dir_from
+#'
+#' @return
+conf_resolve_inherited <- function(value_reference, from, dir_from) {
+  conf_get(value = value_reference, from = from, dir_from = dir_from)
 }
 
-merge_inherited <- function(configs_inherited, configs) {
-  merge(configs_inherited, configs)
+#' Title
+#'
+#' TODO-20191026-9: Write doc for `conf_merge_inherited()`
+#'
+#' @param configs_inherited
+#' @param configs
+#'
+#' @return
+conf_merge_inherited <- function(configs_inherited, configs) {
+  conf_merge(configs_inherited, configs)
 }
 
-handle_inherited <- function(configs, from, dir_from, name = "inherits") {
-  if (has_inherited(configs)) {
-    configs_inherited <- resolve_inherited(configs[[name]], from = from,
+#' Title
+#'
+#' TODO-20191026-10: Write doc for `conf_handle_inherited()`
+#'
+#' @param configs
+#' @param from
+#' @param dir_from
+#' @param name
+#'
+#' @return
+conf_handle_inherited <- function(configs, from, dir_from, name = "inherits") {
+  if (conf_has_inherited(configs)) {
+    configs_inherited <- conf_resolve_inherited(configs[[name]], from = from,
       dir_from = dir_from)
-    merge_inherited(configs_inherited, configs)
+    conf_merge_inherited(configs_inherited, configs)
   } else {
     configs
   }
