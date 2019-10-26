@@ -20,6 +20,10 @@ references
 references
 - Function `conf_handle_config_reference()` as a handler wrapper for inter
 config references
+- Dependency `{stringr}`
+- Dependency `{devtools}` (suggested)
+- Added all `Imports` dependencies to `/R/packages.R` for roxygen to pick them
+up for the `NAMESPACE` file
 
 --------------------------------------------------------------------------------
 

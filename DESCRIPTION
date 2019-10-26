@@ -11,10 +11,13 @@ Imports:
     here,
     magrittr,
     config,
-    lifecycle
+    lifecycle,
+    stringr,
+    fs
 Suggests: 
     testthat (>= 2.1.0),
-    covr
+    covr,
+    devtools
 RdMacros: 
     lifecycle
 Encoding: UTF-8
