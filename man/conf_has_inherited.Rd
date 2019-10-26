@@ -7,7 +7,12 @@
 conf_has_inherited(configs, name = "inherits")
 }
 \arguments{
-\item{name}{}
+\item{configs}{[[list]]}
+
+\item{name}{[[character]]}
+}
+\value{
+[[logical]]
 }
 \description{
 TODO-20191026-7: Write doc for `conf_has_inherited()`

@@ -2,12 +2,12 @@
 #'
 #' TODO-20191026-5: Write doc for `conf_index_recursively()`
 #'
-#' @param lst
-#' @param el
-#' @param .el_trace
-#' @param .level_trace
+#' @param lst [[list]]
+#' @param el [[character]]
+#' @param .el_trace [[character]]
+#' @param .level_trace [[character]]
 #'
-#' @return
+#' @return [[character]] or [[list]]
 conf_index_recursively <- function(
   lst,
   el,
@@ -44,12 +44,12 @@ conf_index_recursively <- function(
 #'
 #' TODO-20191026-6: Write doc for `conf_merge_lists()`
 #'
-#' @param base_list
-#' @param overlay_list
-#' @param recursive
-#' @param is_vector
+#' @param base_list [[list]]
+#' @param overlay_list [[list]]
+#' @param recursive [[logical]]
+#' @param is_vector [[logical]]
 #'
-#' @return
+#' @return [[list]]
 conf_merge_lists <- function (
   base_list,
   overlay_list,
@@ -94,10 +94,10 @@ conf_merge_lists <- function (
 #'
 #' TODO-20191026-7: Write doc for `conf_has_inherited()`
 #'
-#' @param configs
-#' @param name
+#' @param configs [[list]]
+#' @param name [[character]]
 #'
-#' @return
+#' @return [[logical]]
 conf_has_inherited <- function(configs, name = "inherits") {
   name %in% names(configs)
 }
@@ -106,11 +106,11 @@ conf_has_inherited <- function(configs, name = "inherits") {
 #'
 #' TODO-20191026-8: Write doc for `conf_resolve_inherited()`
 #'
-#' @param value_reference
-#' @param from
-#' @param dir_from
+#' @param value_reference [[list] or [character]]
+#' @param from [[character]]
+#' @param dir_from [[character]]
 #'
-#' @return
+#' @return [[list] or [character]]
 conf_resolve_inherited <- function(value_reference, from, dir_from) {
   conf_get(value = value_reference, from = from, dir_from = dir_from)
 }
@@ -119,10 +119,10 @@ conf_resolve_inherited <- function(value_reference, from, dir_from) {
 #'
 #' TODO-20191026-9: Write doc for `conf_merge_inherited()`
 #'
-#' @param configs_inherited
-#' @param configs
+#' @param configs_inherited [[list]]
+#' @param configs [[list]]
 #'
-#' @return
+#' @return [[list]]
 conf_merge_inherited <- function(configs_inherited, configs) {
   conf_merge(configs_inherited, configs)
 }
@@ -131,12 +131,12 @@ conf_merge_inherited <- function(configs_inherited, configs) {
 #'
 #' TODO-20191026-10: Write doc for `conf_handle_inherited()`
 #'
-#' @param configs
-#' @param from
-#' @param dir_from
-#' @param name
+#' @param configs [[list]]
+#' @param from [[character]]
+#' @param dir_from [[character]]
+#' @param name [[character]]
 #'
-#' @return
+#' @return [[list] or [character]]
 conf_handle_inherited <- function(configs, from, dir_from, name = "inherits") {
   if (conf_has_inherited(configs)) {
     configs_inherited <- conf_resolve_inherited(configs[[name]], from = from,

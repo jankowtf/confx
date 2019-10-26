@@ -7,7 +7,12 @@
 conf_merge(config_x, config_y)
 }
 \arguments{
-\item{config_y}{}
+\item{config_x}{[[list]]}
+
+\item{config_y}{[[list]]}
+}
+\value{
+[[list]]
 }
 \description{
 TODO-20191026-4: Write doc for `conf_merge()`

@@ -8,9 +8,18 @@ conf_get(value = character(), from = "config.yml",
   dir_from = here::here(), sep = "/", inheritance_handling = TRUE)
 }
 \arguments{
-\item{value}{}
+\item{value}{[[character]]}
 
-\item{inheritance_handling}{}
+\item{from}{[[character]]}
+
+\item{dir_from}{[[character]]}
+
+\item{sep}{[[character]]}
+
+\item{inheritance_handling}{[[logical]]}
+}
+\value{
+[[list]]
 }
 \description{
 TODO-20191026-1: Write doc for `conf_get()`

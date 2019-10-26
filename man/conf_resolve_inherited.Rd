@@ -7,7 +7,14 @@
 conf_resolve_inherited(value_reference, from, dir_from)
 }
 \arguments{
-\item{dir_from}{}
+\item{value_reference}{[[list] or [character]]}
+
+\item{from}{[[character]]}
+
+\item{dir_from}{[[character]]}
+}
+\value{
+[[list] or [character]]
 }
 \description{
 TODO-20191026-8: Write doc for `conf_resolve_inherited()`

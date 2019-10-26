@@ -2,14 +2,15 @@
 #'
 #' TODO-20191026-1: Write doc for `conf_get()`
 #'
-#' @param value
+#' @param value [[character]]
+#' @param from [[character]]
+#' @param dir_from [[character]]
+#' @param sep [[character]]
+#' @param inheritance_handling [[logical]]
 #'
-#' @param from
-#' @param dir_from
-#' @param sep
-#' @param inheritance_handling
+#' @return  [[list]]
 #'
-#' @export
+#' @export [[list] or [character]]
 conf_get <- function(
   value = character(),
   from = "config.yml",
@@ -49,7 +50,9 @@ conf_get <- function(
 #'
 #' TODO-20191026-2: Write doc for `conf_load()`
 #'
-#' @param dir
+#' @param dir [[character]]
+#'
+#' @return  [[list]]
 #'
 #' @export
 conf_load <- function(dir = here::here()) {
@@ -75,12 +78,13 @@ conf_load <- function(dir = here::here()) {
 #'
 #' TODO-20191026-3: Write doc for `conf_assign()`
 #'
-#' @param config_list
+#' @param config_list [[list]]
+#' @param env [[environment]]
+#' @param from [[character]]
+#' @param dir_from [[character]]
+#' @param sep [[character]]
 #'
-#' @param env
-#' @param from
-#' @param dir_from
-#' @param sep
+#' @return [[list]]
 #'
 #' @export
 conf_assign <- function(
@@ -122,8 +126,10 @@ conf_assign <- function(
 #'
 #' TODO-20191026-4: Write doc for `conf_merge()`
 #'
-#' @param config_x
-#' @param config_y
+#' @param config_x [[list]]
+#' @param config_y [[list]]
+#'
+#' @return [[list]]
 #'
 #' @export
 conf_merge <- function(config_x, config_y) {

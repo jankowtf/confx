@@ -1,3 +1,22 @@
+# confx 0.0.0.9006 (development version)
+
+## Summary
+
+v0.0.0.9006: Modified `.travis.yml` to enable `{covr}` and `codecov.io` and
+modified roxygen doc
+
+## Fixed/closed
+
+## Changed
+
+- Updated roxygen doc
+
+## New
+
+- Modified `.travis.yml` to enable `{covr}` and `codecov.io`
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9005 (development version)
 
 ## Summary

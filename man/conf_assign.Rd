@@ -8,9 +8,18 @@ conf_assign(config_list, env = rlang::caller_env(),
   from = "config.yml", dir_from = here::here(), sep = "/")
 }
 \arguments{
-\item{config_list}{}
+\item{config_list}{[[list]]}
 
-\item{sep}{}
+\item{env}{[[environment]]}
+
+\item{from}{[[character]]}
+
+\item{dir_from}{[[character]]}
+
+\item{sep}{[[character]]}
+}
+\value{
+[[list]]
 }
 \description{
 TODO-20191026-3: Write doc for `conf_assign()`

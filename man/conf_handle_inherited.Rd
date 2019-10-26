@@ -7,7 +7,16 @@
 conf_handle_inherited(configs, from, dir_from, name = "inherits")
 }
 \arguments{
-\item{name}{}
+\item{configs}{[[list]]}
+
+\item{from}{[[character]]}
+
+\item{dir_from}{[[character]]}
+
+\item{name}{[[character]]}
+}
+\value{
+[[list] or [character]]
 }
 \description{
 TODO-20191026-10: Write doc for `conf_handle_inherited()`

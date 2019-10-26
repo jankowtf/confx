@@ -7,7 +7,10 @@
 conf_load(dir = here::here())
 }
 \arguments{
-\item{dir}{}
+\item{dir}{[[character]]}
+}
+\value{
+[[list]]
 }
 \description{
 TODO-20191026-2: Write doc for `conf_load()`
