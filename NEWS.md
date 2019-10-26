@@ -1,3 +1,19 @@
+# confx 0.0.0.9004 (development version)
+
+## Summary
+
+v0.0.0.9004: Added skip_on_travis() to tests
+
+## Fixed/closed
+
+## Changed
+
+## New
+
+- Added `skip_on_travis()` to tests
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9003 (development version)
 
 ## Summary

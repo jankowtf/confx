@@ -1,4 +1,5 @@
 test_that("conf_merge() works (config sets)", {
+  skip_on_travis()
   conf_load(dir = test_path())
 
   config_1 <- getOption("config.yml")
@@ -17,6 +18,7 @@ test_that("conf_merge() works (config sets)", {
 })
 
 test_that("conf_merge() works (inheritance explicit)", {
+  skip_on_travis()
   conf_load(dir = test_path())
 
   value <- "data_structures/data_structure_d/0.0.2"
