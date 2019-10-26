@@ -1,3 +1,19 @@
+# confx 0.0.0.9005 (development version)
+
+## Summary
+
+v0.0.0.9005: Modified `.travis.yml` to display test results on Travis CI
+
+## Fixed/closed
+
+## Changed
+
+## New
+
+- Modified `.travis.yml` to display test results on Travis CI
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9004 (development version)
 
 ## Summary
