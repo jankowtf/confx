@@ -1,3 +1,22 @@
+# confx 0.0.0.9008 (development version)
+
+## Summary
+
+v0.0.0.9008: Updated `.travis.yml`
+
+## Fixed/closed
+
+- Fixed warnings in doc
+
+## Changed
+
+- Updated `.travis.yml` (`warnings_are_errors` and `branches`)
+- Removed `skip_on_travis()`
+
+## New
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9007 (development version)
 
 ## Summary
