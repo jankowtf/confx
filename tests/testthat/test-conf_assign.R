@@ -1,5 +1,5 @@
 test_that("conf_assign() works", {
-  skip_on_travis()
+  # skip_on_travis()
   configs <- conf_get("col_names", dir_from = test_path())
 
   env <- environment()
@@ -12,7 +12,7 @@ test_that("conf_assign() works", {
 })
 
 test_that("conf_assign() works (error)", {
-  skip_on_travis()
+  # skip_on_travis()
   configs <- c(
     conf_get("col_names/.col_id", dir_from = test_path()),
     conf_get("col_names/.col_value", dir_from = test_path())

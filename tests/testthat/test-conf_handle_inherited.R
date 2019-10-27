@@ -1,6 +1,5 @@
 test_that("conf_handle_inherited() works", {
-  skip_on_travis()
-  # warning("TODO-20191024-7: Write test for `conf_handle_inherited()`")
+  # skip_on_travis()
   conf_load(dir = test_path())
   # configs <- conf_get(from = from, inheritance_handling = FALSE)
 
@@ -21,8 +20,7 @@ test_that("conf_handle_inherited() works", {
 })
 
 test_that("conf_handle_inherited() works: inter-config", {
-  skip_on_travis()
-  # warning("TODO-20191024-7: Write test for `conf_handle_inherited()`")
+  # skip_on_travis()
   conf_load(dir = test_path())
 
   value <- "data_structures/data_structure_e"
