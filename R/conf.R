@@ -55,11 +55,14 @@ conf_get <- function(
 #' @return  [[list]]
 #'
 #' @export
-conf_load <- function(dir = here::here()) {
+conf_load <- function(
+  dir = here::here(),
+  pattern_disregard = "^(_|\\.|codecov|travis)"
+) {
   config_files <- fs::dir_ls(dir, type = "file", regexp = "\\.yml$")
   idx <- config_files %>%
     fs::path_file() %>%
-    stringr::str_detect("^(_|\\.)", negate = TRUE)
+    stringr::str_detect(pattern_disregard, negate = TRUE)
   config_files <- config_files[idx]
 
   config_files %>%

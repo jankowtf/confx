@@ -7,10 +7,10 @@
 conf_resolve_config_reference(value)
 }
 \arguments{
-\item{value}{[[character]]}
+\item{value}{[\link{character}]}
 }
 \value{
-[[character]]
+[\link{character}]
 }
 \description{
 Title

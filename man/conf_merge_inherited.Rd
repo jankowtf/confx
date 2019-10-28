@@ -7,13 +7,13 @@
 conf_merge_inherited(configs_inherited, configs)
 }
 \arguments{
-\item{configs_inherited}{[[list]]}
+\item{configs_inherited}{[\link{list}]}
 
-\item{configs}{[[list]]}
+\item{configs}{[\link{list}]}
 }
 \value{
-[[list]]
+[\link{list}]
 }
 \description{
-TODO-20191026-9: Write doc for `conf_merge_inherited()`
+TODO-20191026-9: Write doc for \code{conf_merge_inherited()}
 }

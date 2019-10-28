@@ -7,12 +7,12 @@
 conf_handle_config_reference(value, from)
 }
 \arguments{
-\item{value}{[[value]]}
+\item{value}{[\link{value}]}
 
-\item{from}{[[value]]}
+\item{from}{[\link{value}]}
 }
 \value{
-[[value]]
+[\link{value}]
 }
 \description{
 Title

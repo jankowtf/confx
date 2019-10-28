@@ -7,17 +7,17 @@
 conf_index_recursively(lst, el, .el_trace = el, .level_trace = 1)
 }
 \arguments{
-\item{lst}{[[list]]}
+\item{lst}{[\link{list}]}
 
-\item{el}{[[character]]}
+\item{el}{[\link{character}]}
 
-\item{.el_trace}{[[character]]}
+\item{.el_trace}{[\link{character}]}
 
-\item{.level_trace}{[[character]]}
+\item{.level_trace}{[\link{character}]}
 }
 \value{
-[[character]] or [[list]]
+[\link{character}] or [\link{list}]
 }
 \description{
-TODO-20191026-5: Write doc for `conf_index_recursively()`
+TODO-20191026-5: Write doc for \code{conf_index_recursively()}
 }

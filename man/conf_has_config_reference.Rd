@@ -7,10 +7,10 @@
 conf_has_config_reference(value)
 }
 \arguments{
-\item{value}{[[character]]}
+\item{value}{[\link{character}]}
 }
 \value{
-[[logical]]
+[\link{logical}]
 }
 \description{
 Title

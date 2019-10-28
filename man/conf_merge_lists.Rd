@@ -8,17 +8,17 @@ conf_merge_lists(base_list, overlay_list, recursive = TRUE,
   is_vector = FALSE)
 }
 \arguments{
-\item{base_list}{[[list]]}
+\item{base_list}{[\link{list}]}
 
-\item{overlay_list}{[[list]]}
+\item{overlay_list}{[\link{list}]}
 
-\item{recursive}{[[logical]]}
+\item{recursive}{[\link{logical}]}
 
-\item{is_vector}{[[logical]]}
+\item{is_vector}{[\link{logical}]}
 }
 \value{
-[[list]]
+[\link{list}]
 }
 \description{
-TODO-20191026-6: Write doc for `conf_merge_lists()`
+TODO-20191026-6: Write doc for \code{conf_merge_lists()}
 }

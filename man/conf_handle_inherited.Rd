@@ -7,17 +7,17 @@
 conf_handle_inherited(configs, from, dir_from, name = "inherits")
 }
 \arguments{
-\item{configs}{[[list]]}
+\item{configs}{[\link{list}]}
 
-\item{from}{[[character]]}
+\item{from}{[\link{character}]}
 
-\item{dir_from}{[[character]]}
+\item{dir_from}{[\link{character}]}
 
-\item{name}{[[character]]}
+\item{name}{[\link{character}]}
 }
 \value{
-[[list] or [character]]
+[\link{list} or \link{character}]
 }
 \description{
-TODO-20191026-10: Write doc for `conf_handle_inherited()`
+TODO-20191026-10: Write doc for \code{conf_handle_inherited()}
 }

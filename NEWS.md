@@ -1,3 +1,23 @@
+# confx 0.0.0.9009 (development version)
+
+## Summary
+
+v0.0.0.9009: More unit tests
+
+## Fixed/closed
+
+## Changed
+
+- Changed regex pattern to YAML files to disregard (`pattern_disregard =
+"^(_|\\.|codecov|travis)"`)
+
+## New
+
+- Unit tests for `.onLoad()` and `.onAttach()`
+- Enabled markdown in Roxygen code
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9008 (development version)
 
 ## Summary

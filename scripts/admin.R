@@ -38,3 +38,15 @@ usethis::use_test("conf_handle_inherited")
 usethis::use_test("conf_has_config_reference")
 usethis::use_test("conf_resolve_config_reference")
 usethis::use_test("conf_handle_config_reference")
+
+# 2019-10-28 --------------------------------------------------------------
+
+usethis::use_test("onLoad")
+usethis::use_test("onAttach")
+usethis::use_roxygen_md()
+# Run once:
+if (FALSE) {
+  renv::install("roxygen2md")
+  roxygen2md::roxygen2md()
+  renv::remove("roxygen2md")
+}
