@@ -1,3 +1,5 @@
+# confx (development version)
+
 # confx 0.0.0.9010 (development version)
 
 Internal config files and `force_from_file`
