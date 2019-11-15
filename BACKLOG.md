@@ -22,11 +22,11 @@ memory/options
 - TODO-20191027-4: Write test for `conf_resolve_config_reference()`
 - TODO-20191027-5: Write doc for `conf_handle_config_reference()`
 - TODO-20191027-6: Write test for `conf_handle_config_reference()`
-
-
-
-
 - TODO-20191024-15: Write doc for `conf_handle_inherited()`
+- TODO-2019115-1: `force_from_file` hard to test, think about including an
+automatic load count or something similar"
+- TODO-20191115-2: Explain env var `CONFX_AUTO_LOAD_INTERNAL`
+- TODO-20191115-3: Explain env var `CONFX_AUTO_LOAD`
 
 # Closed
 

@@ -7,13 +7,13 @@
 }
 
 .onAttach <- function(libname, pkgname) {
-  # Load configs -----
-  env_auto_load <- as.logical(Sys.getenv("CONFX_AUTO_LOAD", FALSE))
-  if (env_auto_load) {
-    conf_load()
-  }
+  # Load internal configs:
+  conf_auto_load_internal(pgkname)
 
-  # For plumber testing -----
+  # Load project-based configs:
+  conf_auto_load()
+
+  # For plumber testing:
   # .__STATE__ <<- new.env(parent = emptyenv()) #create .state when package is first loaded
 
   invisible(TRUE)

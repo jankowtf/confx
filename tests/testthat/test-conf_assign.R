@@ -1,9 +1,25 @@
+dir_from <- test_path()
+
+test_that("Options are cleaned up", {
+  opt_name <- stringr::str_glue("{PKG_THIS}{SEP_OPT_NAME}config.yml")
+  arg_list <- list(NULL) %>% purrr::set_names(opt_name)
+  rlang::call2(quote(options), !!!arg_list) %>%
+    rlang::eval_tidy()
+  expect_identical(options(opt_name) %>% unlist(), NULL)
+
+  opt_name <- stringr::str_glue("{PKG_THIS}{SEP_OPT_NAME}config_2.yml")
+  arg_list <- list(NULL) %>% purrr::set_names(opt_name)
+  rlang::call2(quote(options), !!!arg_list) %>%
+    rlang::eval_tidy()
+  expect_identical(options(opt_name) %>% unlist(), NULL)
+})
+
 test_that("conf_assign() works", {
   # skip_on_travis()
-  configs <- conf_get("col_names", dir_from = test_path())
+  configs <- conf_get("col_names", dir_from = dir_from)
 
   env <- environment()
-  res <- conf_assign(configs, env = env, dir_from = test_path())
+  res <- conf_assign(configs, env = env, dir_from = dir_from)
   expect_is(res, "list")
   expect_length(res, 3)
   expect_true(exists(".col_id", envir = env, inherits = FALSE))
@@ -14,10 +30,10 @@ test_that("conf_assign() works", {
 test_that("conf_assign() works (error)", {
   # skip_on_travis()
   configs <- c(
-    conf_get("col_names/.col_id", dir_from = test_path()),
-    conf_get("col_names/.col_value", dir_from = test_path())
+    conf_get("col_names/.col_id", dir_from = dir_from),
+    conf_get("col_names/.col_value", dir_from = dir_from)
   )
 
-  expect_error(conf_assign(configs, dir_from = test_path()),
+  expect_error(conf_assign(configs, dir_from = dir_from),
     "Not a valid config list")
 })

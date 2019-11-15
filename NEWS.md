@@ -1,3 +1,27 @@
+# confx 0.0.0.9010 (development version)
+
+Internal config files and `force_from_file`
+
+Fixed/closed:
+
+Changed:
+
+- Calls to `system.file()` inside `onAttach()` to load internal configs instead
+of configs from package/project root directory
+- Aligned `conf_get()` to new option name that are prefixed with `<pkg_name>_`
+- Changed function prefixes from `config_` to `conf_` for brevity
+
+New:
+
+- File `/inst/config.yml`
+- Encapsulated inner function of `conf_load()` into own function
+`conf_load__inner()`
+- Function `conf_auto_load()`
+- Function `conf_auto_load_internal()`
+- Argument `force_from_file = FALSE` in `conf_get()`
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9009 (development version)
 
 ## Summary

@@ -1,9 +1,15 @@
+dir_from <- test_path()
+
 test_that("conf_merge() works (config sets)", {
   # skip_on_travis()
-  conf_load(dir = test_path())
+  conf_load(dir = dir_from)
 
-  config_1 <- getOption("config.yml")
-  config_2 <- getOption("config_2.yml")
+  from <- stringr::str_glue("{PKG_THIS}{SEP_OPT_NAME}config.yml")
+  config_1 <- getOption(from)
+  expect_true(!is.null(config_1))
+  from <- stringr::str_glue("{PKG_THIS}{SEP_OPT_NAME}config_2.yml")
+  config_2 <- getOption(from)
+  expect_true(!is.null(config_2))
 
   res <- conf_merge(config_1, config_2)
   expect_identical(length(res), length(config_1))
@@ -19,7 +25,7 @@ test_that("conf_merge() works (config sets)", {
 
 test_that("conf_merge() works (inheritance explicit)", {
   # skip_on_travis()
-  conf_load(dir = test_path())
+  conf_load(dir = dir_from)
 
   value <- "data_structures/data_structure_d/0.0.2"
   from <- "config_2.yml"
@@ -43,7 +49,7 @@ test_that("conf_merge() works (inheritance default/production)", {
   # skip_on_travis()
   Sys.setenv(R_CONFIG_ACTIVE = "production")
 
-  conf_load(dir = test_path())
+  conf_load(dir = dir_from)
 
   value <- "db_name"
   from <- "config_2.yml"
@@ -52,7 +58,7 @@ test_that("conf_merge() works (inheritance default/production)", {
 
   expect_identical(res, "db_prod")
 
-  conf_load(dir = test_path())
+  conf_load(dir = dir_from)
   # configs <- conf_get(from = from, inheritance_handling = FALSE)
 
   value <- "data_structures/data_structure_d/0.0.2"
@@ -73,6 +79,16 @@ test_that("conf_merge() works (inheritance default/production)", {
   Sys.setenv(R_CONFIG_ACTIVE = "default")
 })
 
-# Clean up -----
-options("config.yml" = NULL)
-options("config_2.yml" = NULL)
+test_that("Options are cleaned up", {
+  opt_name <- stringr::str_glue("{PKG_THIS}{SEP_OPT_NAME}config.yml")
+  arg_list <- list(NULL) %>% purrr::set_names(opt_name)
+  rlang::call2(quote(options), !!!arg_list) %>%
+    rlang::eval_tidy()
+  expect_identical(options(opt_name) %>% unlist(), NULL)
+
+  opt_name <- stringr::str_glue("{PKG_THIS}{SEP_OPT_NAME}config_2.yml")
+  arg_list <- list(NULL) %>% purrr::set_names(opt_name)
+  rlang::call2(quote(options), !!!arg_list) %>%
+    rlang::eval_tidy()
+  expect_identical(options(opt_name) %>% unlist(), NULL)
+})

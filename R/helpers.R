@@ -145,7 +145,12 @@ conf_merge_inherited <- function(configs_inherited, configs) {
 #' @param name [[character]]
 #'
 #' @return [[list] or [character]]
-conf_handle_inherited <- function(configs, from, dir_from, name = "inherits") {
+conf_handle_inherited <- function(
+  configs,
+  from,
+  dir_from = here::here(),
+  name = "inherits"
+) {
   if (conf_has_inherited(configs)) {
     configs_inherited <- conf_resolve_inherited(configs[[name]], from = from,
       dir_from = dir_from)

@@ -4,7 +4,8 @@
 \alias{conf_handle_inherited}
 \title{Title}
 \usage{
-conf_handle_inherited(configs, from, dir_from, name = "inherits")
+conf_handle_inherited(configs, from, dir_from = here::here(),
+  name = "inherits")
 }
 \arguments{
 \item{configs}{[\link{list}]}
