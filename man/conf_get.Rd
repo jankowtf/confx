@@ -6,7 +6,8 @@
 \usage{
 conf_get(value = character(), from = "config.yml",
   dir_from = here::here(), sep = "/", sep_opt_name = "_",
-  inheritance_handling = TRUE, force_from_file = FALSE)
+  inheritance_handling = TRUE, force_from_file = FALSE,
+  leaf_as_list = FALSE)
 }
 \arguments{
 \item{value}{[\link{character}]}
@@ -22,6 +23,8 @@ conf_get(value = character(), from = "config.yml",
 \item{inheritance_handling}{[\link{logical}]}
 
 \item{force_from_file}{[\link{logical}]}
+
+\item{leaf_as_list}{[\link{logical}]}
 }
 \value{
 [\link{list} or \link{character}]

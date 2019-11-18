@@ -9,6 +9,7 @@
 #' @param sep_opt_name [[character]]
 #' @param inheritance_handling [[logical]]
 #' @param force_from_file [[logical]]
+#' @param leaf_as_list [[logical]]
 #'
 #' @return [[list] or [character]]
 #'
@@ -20,7 +21,8 @@ conf_get <- function(
   sep = "/",
   sep_opt_name = "_",
   inheritance_handling = TRUE,
-  force_from_file = FALSE
+  force_from_file = FALSE,
+  leaf_as_list = FALSE
 ) {
   # configs <- getOption(from)
   pkg_this <- devtools::as.package(dir_from)$package
@@ -37,7 +39,8 @@ conf_get <- function(
 
   configs <- conf_index_recursively(
     configs,
-    stringr::str_split(value, sep, simplify = TRUE)
+    stringr::str_split(value, sep, simplify = TRUE),
+    leaf_as_list = leaf_as_list
   )
 
   if (inheritance_handling) {
@@ -118,8 +121,12 @@ conf_assign <- function(
   sep = "/"
 ) {
   if (!is.list(config_list)) {
-    stop(stringr::str_glue("Not a valid config list in arg `config_list`: \n{capture.output(str(config_list))}"))
+    # stop(stringr::str_glue("Not a valid config list in arg `config_list`: \n{capture.output(str(config_list))}"))
+    config_list <- config_list %>%
+      purrr::map(conf_get, dir_from = dir_from, leaf_as_list = TRUE) %>%
+      purrr::flatten()
   }
+
   purrr::map2(names(config_list), config_list, function(.x, .y) {
     if (!is.list(.y)) {
       .y <- if (is.call(.y)) {
@@ -127,7 +134,7 @@ conf_assign <- function(
       } else if (is.character(.y)) {
         if (.y[[1]] %>% stringr::str_detect("/")) {
           # TODO-20191023-2: find better solution for vectorized input
-          .y %>% purrr::map_chr(get_config, from = from, dir_from = dir_from, sep = sep)
+          .y %>% purrr::map_chr(conf_get, from = from, dir_from = dir_from, sep = sep)
         } else {
           .y
         }

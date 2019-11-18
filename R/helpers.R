@@ -4,6 +4,7 @@
 #'
 #' @param lst [[list]]
 #' @param el [[character]]
+#' @param leaf_as_list [[logical]]
 #' @param .el_trace [[character]]
 #' @param .level_trace [[character]]
 #'
@@ -11,6 +12,7 @@
 conf_index_recursively <- function(
   lst,
   el,
+  leaf_as_list = FALSE,
   .el_trace = el,
   .level_trace = 1
 ) {
@@ -29,11 +31,16 @@ conf_index_recursively <- function(
   }
 
   # Index:
-  lst <- lst[[ el[1] ]]
+  lst <- if (!leaf_as_list || length(el) > 1) {
+    lst[[ el[1] ]]
+  } else {
+    lst[ el[1] ]
+  }
 
   if (!is.na(el[2])) {
     # Continue if there are additional elements in `el` vec
-    Recall(lst, el[-1], .el_trace, .level_trace = 1:(.level_trace + 1))
+    Recall(lst, el[-1], leaf_as_list,
+      .el_trace, .level_trace = 1:(.level_trace + 1))
   } else {
     # Otherwise return last indexing result:
     lst

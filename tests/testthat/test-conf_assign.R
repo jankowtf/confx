@@ -27,13 +27,25 @@ test_that("conf_assign() works", {
   expect_true(exists(".col_value", envir = env, inherits = FALSE))
 })
 
-test_that("conf_assign() works (error)", {
-  # skip_on_travis()
+test_that("conf_assign() works (char input error)", {
   configs <- c(
     conf_get("col_names/.col_id", dir_from = dir_from),
     conf_get("col_names/.col_value", dir_from = dir_from)
   )
 
+  # expect_error(conf_assign(configs, dir_from = dir_from),
+  #   "Not a valid config list")
   expect_error(conf_assign(configs, dir_from = dir_from),
-    "Not a valid config list")
+    "No such element in list: id")
+})
+
+test_that("conf_assign() works (reference)", {
+  configs <- conf_get("data_structures/data_structure_a", dir_from = dir_from)
+
+  env <- environment()
+  res <- conf_assign(configs, env = env, dir_from = dir_from)
+  expect_is(res, "list")
+  expect_length(res, 2)
+  expect_true(exists(".col_id", envir = env, inherits = FALSE))
+  expect_true(exists(".col_value", envir = env, inherits = FALSE))
 })

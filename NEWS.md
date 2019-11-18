@@ -1,4 +1,19 @@
-# confx (development version)
+# confx 0.0.0.9011 (development version)
+
+Arg `leaf_as_list`
+
+Fixed/closed:
+
+Changed:
+
+- Character input for referenced configs in `conf_assign()` now allowed. Powered
+by introducing arg `leaf_as_list = TRUE/FALSE` in `conf_get()` and
+`conf_index_recursively()`
+- Modified `README.Rmd`
+
+New:
+
+--------------------------------------------------------------------------------
 
 # confx 0.0.0.9010 (development version)
 
