@@ -49,3 +49,17 @@ test_that("conf_assign() works (reference)", {
   expect_true(exists(".col_id", envir = env, inherits = FALSE))
   expect_true(exists(".col_value", envir = env, inherits = FALSE))
 })
+
+test_that("conf_assign() works (reference non-standard file)", {
+  from <- "config_2.yml"
+  configs <- conf_get("data_structures/data_structure_c",
+    from = from, dir_from = dir_from)
+
+  env <- environment()
+  res <- conf_assign(configs, env = env, from = from, dir_from = dir_from)
+  expect_is(res, "list")
+  expect_length(res, 3)
+  expect_true(exists(".col_group", envir = env, inherits = FALSE))
+  expect_true(exists(".col_id", envir = env, inherits = FALSE))
+  expect_true(exists(".col_value", envir = env, inherits = FALSE))
+})

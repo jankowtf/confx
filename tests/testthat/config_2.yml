@@ -2,6 +2,8 @@ default:
   db_name: db_default
   col_names:
     .col_group: group
+    .col_id: id
+    .col_value: value
   data_structures:
     data_structure_c: [
       col_names/.col_group,

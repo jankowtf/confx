@@ -15,9 +15,10 @@ test_that("conf_merge() works (config sets)", {
   expect_identical(length(res), length(config_1))
   expect_identical(length(res), length(config_2))
 
+
   expect_equal(length(res$col_names),
-    length(config_1$col_names) +
-    length(config_2$col_names))
+    length(union(config_1$col_names, config_2$col_names))
+  )
   expect_equal(length(res$data_structures),
     length(config_1$data_structures) +
       length(config_2$data_structures))

@@ -1,3 +1,18 @@
+# confx 0.0.0.9012 (development version)
+
+Fixed `from` in `conf_assign()`
+
+Fixed/closed:
+
+- Fixed `from` in `conf_assign()`
+
+Changed:
+
+New:
+
+--------------------------------------------------------------------------------
+
+
 # confx 0.0.0.9011 (development version)
 
 Arg `leaf_as_list`

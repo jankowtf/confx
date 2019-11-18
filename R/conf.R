@@ -123,7 +123,11 @@ conf_assign <- function(
   if (!is.list(config_list)) {
     # stop(stringr::str_glue("Not a valid config list in arg `config_list`: \n{capture.output(str(config_list))}"))
     config_list <- config_list %>%
-      purrr::map(conf_get, dir_from = dir_from, leaf_as_list = TRUE) %>%
+      purrr::map(conf_get,
+        from = from,
+        dir_from = dir_from,
+        leaf_as_list = TRUE
+      ) %>%
       purrr::flatten()
   }
 
