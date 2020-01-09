@@ -4,8 +4,13 @@
 \alias{conf_assign}
 \title{Assign configs to local variables \lifecycle{experimental}}
 \usage{
-conf_assign(config_list, env = rlang::caller_env(),
-  from = "config.yml", dir_from = here::here(), sep = "/")
+conf_assign(
+  config_list,
+  env = rlang::caller_env(),
+  from = "config.yml",
+  dir_from = here::here(),
+  sep = "/"
+)
 }
 \arguments{
 \item{config_list}{[\link{list}]}

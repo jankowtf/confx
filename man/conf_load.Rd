@@ -4,8 +4,7 @@
 \alias{conf_load}
 \title{Load configs into options \lifecycle{experimental}}
 \usage{
-conf_load(dir = here::here(),
-  pattern_disregard = "^(_|\\\\.|codecov|travis)")
+conf_load(dir = here::here(), pattern_disregard = "^(_|\\\\.|codecov|travis)")
 }
 \arguments{
 \item{dir}{[\link{character}]}

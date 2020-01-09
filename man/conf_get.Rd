@@ -4,10 +4,16 @@
 \alias{conf_get}
 \title{Get config \lifecycle{experimental}}
 \usage{
-conf_get(value = character(), from = "config.yml",
-  dir_from = here::here(), sep = "/", sep_opt_name = "_",
-  inheritance_handling = TRUE, force_from_file = FALSE,
-  leaf_as_list = FALSE)
+conf_get(
+  value = character(),
+  from = "config.yml",
+  dir_from = here::here(),
+  sep = "/",
+  sep_opt_name = "_",
+  inheritance_handling = TRUE,
+  force_from_file = FALSE,
+  leaf_as_list = FALSE
+)
 }
 \arguments{
 \item{value}{[\link{character}]}

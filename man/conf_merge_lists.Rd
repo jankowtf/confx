@@ -4,8 +4,7 @@
 \alias{conf_merge_lists}
 \title{Title}
 \usage{
-conf_merge_lists(base_list, overlay_list, recursive = TRUE,
-  is_vector = FALSE)
+conf_merge_lists(base_list, overlay_list, recursive = TRUE, is_vector = FALSE)
 }
 \arguments{
 \item{base_list}{[\link{list}]}

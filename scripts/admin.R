@@ -1,3 +1,19 @@
+
+# Quick access of common admin tasks --------------------------------------
+
+renv::upgrade()
+renv::settings$snapshot.type("simple")
+# renv::restore(clean = TRUE)
+renv::update()
+
+renv::settings$snapshot.type()
+renv::snapshot()
+
+renv::refresh()
+renv::rehash()
+
+# Other -------------------------------------------------------------------
+
 renv::activate()
 renv::upgrade()
 

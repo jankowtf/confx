@@ -1,3 +1,17 @@
+# confx 0.0.0.9013 (development version)
+
+Experimenting with references as specified in https://swagger.io/docs/specification/using-ref/
+
+Fixed/closed:
+
+Changed:
+
+- Updated package deps and created local project library for Linux
+
+New:
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9012 (development version)
 
 Fixed `from` in `conf_assign()`

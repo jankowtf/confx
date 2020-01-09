@@ -4,8 +4,13 @@
 \alias{conf_index_recursively}
 \title{Title}
 \usage{
-conf_index_recursively(lst, el, leaf_as_list = FALSE, .el_trace = el,
-  .level_trace = 1)
+conf_index_recursively(
+  lst,
+  el,
+  leaf_as_list = FALSE,
+  .el_trace = el,
+  .level_trace = 1
+)
 }
 \arguments{
 \item{lst}{[\link{list}]}
