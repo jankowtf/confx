@@ -51,9 +51,9 @@ usethis::use_test("conf_has_inherited")
 usethis::use_test("conf_resolve_inherited")
 usethis::use_test("conf_merge_inherited")
 usethis::use_test("conf_handle_inherited")
-usethis::use_test("conf_has_config_reference")
-usethis::use_test("conf_resolve_config_reference")
-usethis::use_test("conf_handle_config_reference")
+usethis::use_test("conf_has_reference")
+usethis::use_test("conf_resolve_reference")
+usethis::use_test("conf_handle_reference")
 
 # 2019-10-28 --------------------------------------------------------------
 
@@ -66,3 +66,14 @@ if (FALSE) {
   roxygen2md::roxygen2md()
   renv::remove("roxygen2md")
 }
+
+# v0.0.0.9013 (2020-01-09) ------------------------------------------------
+
+usethis::use_test("references")
+
+# v0.0.0.9014 (2020-01-17) ------------------------------------------------
+
+usethis::use_test("regexp__file_extensions_as_pattern")
+usethis::use_test("SYS_VALID_CONF_EXTENSIONS")
+usethis::use_test("SYS_DISREGARDED_CONF_EXTENSIONS")
+usethis::use_test("load_conf_from_dir")

@@ -1,19 +1,20 @@
 file_config_yml <- test_path("config.yml")
 file_config_2_yml <- test_path("config_2.yml")
+file_config_openapi_yml <- test_path("config_openapi.yml")
 
-test_that("conf_load() works (before)", {
+test_that("Loading configs work: option state before", {
   # skip_on_travis()
   res <- getOption("config.yml")
   expect_true(is.null(res))
 })
 
-test_that("conf_load() works (call)", {
+test_that("Loading configs work: from dir", {
   # skip_on_travis()
-  res <- conf_load(dir = test_path())
-  expect_equal(res, c(file_config_yml, file_config_2_yml))
+  res <- load_conf(dir = test_path())
+  expect_equal(res, c(file_config_yml, file_config_2_yml, file_config_openapi_yml))
 })
 
-test_that("conf_load() works (after)", {
+test_that("load_conf() works (after)", {
   # skip_on_travis()
   res <- getOption("confx_config.yml")
   expect_true(!is.null(res))

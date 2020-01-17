@@ -8,7 +8,7 @@ memory/options
 - TODO-20191024-6: Write test for `conf_merge_inherited()`
 - TODO-20191024-7: Write test for `conf_handle_inherited()`
 - TODO-20191026-1: Write doc for `conf_get()`
-- TODO-20191026-2: Write doc for `conf_load()`
+- TODO-20191026-2: Write doc for `load_conf_from_dir()`
 - TODO-20191026-3: Write doc for `conf_assign()`
 - TODO-20191026-4: Write doc for `conf_merge()`
 - TODO-20191026-5: Write doc for `conf_index_recursively()`

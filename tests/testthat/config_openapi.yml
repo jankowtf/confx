@@ -1,0 +1,15 @@
+default:
+  # For testing references as specified by https://swagger.io/docs/specification/using-ref/
+  components:
+    schemas:
+      User:
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+  responses:
+    "200":
+      description: The response
+      schema:
+        $ref: "#/components/schemas/User"

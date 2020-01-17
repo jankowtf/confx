@@ -35,3 +35,4 @@ test_that(".onAttach() works: auto load enabled", {
   devtools::unload()
   devtools::load_all()
 })
+
