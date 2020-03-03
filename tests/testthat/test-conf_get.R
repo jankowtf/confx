@@ -33,3 +33,10 @@ test_that("conf_get() works (force from file)", {
   expect_is(res, "list")
   expect_true(length(res) >= 1)
 })
+
+test_that("R_CONFIG_DIR", {
+  Sys.setenv(R_CONFIG_DIR = file.path(dir_from, "subdir"))
+  res <- conf_get(force_from_file = TRUE)
+  expect_is(res, "list")
+  expect_identical(res$test, "hello world")
+})

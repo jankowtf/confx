@@ -1,3 +1,25 @@
+# confx 0.0.0.9016 (development version)
+
+Default value of `dir_from` via environment variable `R_CONFIG_DIR` if specified
+
+Fixed/closed:
+
+Changed:
+
+- Changed default value of `dir_from` to use env var `R_CONFIG_DIR` if it exists:
+
+    - `conf_get()`
+    - `conf_assign()`
+    - `load_conf()`
+    - `load_conf_from_dir()`
+    - `handle_conf_reference()`
+    - `conf_handle_inherited()`
+    - `conf_load()`
+    
+New:
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9015 (development version)
 
 Swapped `here::here()` for `getwd()` to facilitate usage in built packages

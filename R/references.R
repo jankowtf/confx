@@ -86,7 +86,8 @@ conf_handle_inherited <- function(
   configs,
   from,
   # dir_from = here::here(),
-  dir_from = getwd(),
+  # dir_from = getwd(),
+  dir_from = Sys.getenv("R_CONFIG_DIR", getwd()),
   name = "inherits"
 ) {
   if (conf_has_inherited(configs)) {
@@ -114,7 +115,8 @@ handle_conf_reference <- function(
   configs,
   from,
   # dir_from = here::here()
-  dir_from = getwd()
+  # dir_from = getwd()
+  dir_from = Sys.getenv("R_CONFIG_DIR", getwd())
 ) {
   ref <- "$ref"
   if (has_conf_reference(configs)) {

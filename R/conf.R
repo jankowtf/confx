@@ -18,7 +18,8 @@ conf_get <- function(
   value = character(),
   from = "config.yml",
   # dir_from = here::here(),
-  dir_from = getwd(),
+  # dir_from = getwd(),
+  dir_from = Sys.getenv("R_CONFIG_DIR", getwd()),
   sep = "/",
   sep_opt_name = "_",
   inheritance_handling = TRUE,
@@ -72,7 +73,8 @@ conf_assign <- function(
   env = rlang::caller_env(),
   from = "config.yml",
   # dir_from = here::here(),
-  dir_from = getwd(),
+  # dir_from = getwd(),
+  dir_from = Sys.getenv("R_CONFIG_DIR", getwd()),
   sep = "/"
 ) {
   if (!is.list(config_list)) {
