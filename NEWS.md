@@ -1,4 +1,4 @@
-# confx 0.0.0.9014 (development version)
+# confx 0.0.0.9015 (development version)
 
 Swapped `here::here()` for `getwd()` to facilitate usage in built packages
 
@@ -17,6 +17,12 @@ Changed:
     - `conf_load()`
 
 New:
+
+--------------------------------------------------------------------------------
+
+# confx 0.0.0.9014 (development version)
+
+No changelog
 
 --------------------------------------------------------------------------------
 
