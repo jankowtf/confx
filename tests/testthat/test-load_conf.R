@@ -10,7 +10,7 @@ test_that("Loading configs work: option state before", {
 
 test_that("Loading configs work: from dir", {
   # skip_on_travis()
-  res <- load_conf(dir = test_path())
+  res <- load_conf(from = test_path())
   expect_equal(res, c(file_config_yml, file_config_2_yml, file_config_openapi_yml))
 })
 

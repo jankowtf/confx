@@ -9,10 +9,11 @@
 #' @export
 load_conf <- function(
   # dir = here::here(),
-  from = here::here(),
+  # from = here::here(),
+  from = getwd(),
   pattern_disregard = "^(_|\\.|codecov|travis)"
 ) {
-  conf_files <- fs::dir_ls(dir, type = "file", regexp = "\\.yml$")
+  conf_files <- fs::dir_ls(from, type = "file", regexp = "\\.yml$")
 
   # Filter out special configs such as for TravisCI and `{covr}`:
   idx <- conf_files %>%
@@ -44,7 +45,8 @@ load_conf <- function(
 #' @seealso [conf::load_conf_from_file()]
 #' @export
 load_conf_from_dir <- function(
-  dir = here::here(),
+  # dir = here::here(),
+  dir = getwd(),
   regexp_valid_files = SYS_VALID_CONF_EXTENSIONS(as_regexp = TRUE),
   regexp_disregarded_files = SYS_DISREGARDED_CONF_FILES(as_regexp = TRUE)
 ) {

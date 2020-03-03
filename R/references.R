@@ -85,7 +85,8 @@ conf_merge_inherited <- function(configs_inherited, configs) {
 conf_handle_inherited <- function(
   configs,
   from,
-  dir_from = here::here(),
+  # dir_from = here::here(),
+  dir_from = getwd(),
   name = "inherits"
 ) {
   if (conf_has_inherited(configs)) {
@@ -112,7 +113,8 @@ conf_handle_inherited <- function(
 handle_conf_reference <- function(
   configs,
   from,
-  dir_from = here::here()
+  # dir_from = here::here()
+  dir_from = getwd()
 ) {
   ref <- "$ref"
   if (has_conf_reference(configs)) {

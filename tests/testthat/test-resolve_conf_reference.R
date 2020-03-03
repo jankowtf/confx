@@ -18,12 +18,16 @@ test_that("handle_conf_reference() works", {
   res <- handle_conf_reference(configs, from, dir_from)
 
   expect_identical(res,
-    list(cols = c(
-      "col_names/.col_id",
-      "col_names/.col_name",
-      "col_names/.col_value"
-    ),
-      inherits = "data_structures/data_structure_d/0.0.1"
+    list(
+      properties = list(
+        id = list(
+          type = "integer"
+        ),
+        name = list(
+          type = "string"
+        )
+      ),
+      `$ref` = "#/components/schemas/User"
     )
   )
 })
@@ -39,10 +43,6 @@ test_that("handle_conf_reference() works: inter-config", {
 
   expect_identical(res,
     list(
-      c(
-        "col_names/.col_id",
-        "col_names/.col_value"
-      ),
       inherits = "config.yml/data_structures/data_structure_a"
     )
   )

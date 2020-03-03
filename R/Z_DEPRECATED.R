@@ -8,7 +8,8 @@
 #'
 #' @export
 conf_load <- function(
-  dir = here::here(),
+  # dir = here::here(),
+  dir = getwd(),
   pattern_disregard = "^(_|\\.|codecov|travis)"
 ) {
   .Deprecated("load_conf")

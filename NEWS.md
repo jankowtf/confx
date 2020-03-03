@@ -1,3 +1,25 @@
+# confx 0.0.0.9014 (development version)
+
+Swapped `here::here()` for `getwd()` to facilitate usage in built packages
+
+Fixed/closed:
+
+Changed:
+
+- Swapped `here::here()` for `getwd()` in:
+
+    - `conf_get()`
+    - `conf_assign()`
+    - `load_conf()`
+    - `load_conf_from_dir()`
+    - `handle_conf_reference()`
+    - `conf_handle_inherited()`
+    - `conf_load()`
+
+New:
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9013 (development version)
 
 Experimenting with references as specified in https://swagger.io/docs/specification/using-ref/
