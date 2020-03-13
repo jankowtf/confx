@@ -40,3 +40,57 @@ test_that("R_CONFIG_DIR", {
   expect_is(res, "list")
   expect_identical(res$test, "hello world")
 })
+
+test_that("JSON references", {
+  Sys.setenv(R_CONFIG_DIR = dir_from)
+
+  . <- test_path("config_openapi.yml") %>%
+    conf_load_from_file()
+
+  value <- "responses/200/schema"
+  from <- "config_openapi.yml"
+
+  configs <- conf_get(value, from, dir_from, resolve_references = FALSE)
+  res <- conf_handle_reference_json(configs, from, dir_from)
+
+  target <- conf_get("components/schemas/User", from = from)
+
+  expect_identical(res, target)
+})
+
+test_that("JSON references inter-file", {
+  Sys.setenv(R_CONFIG_DIR = dir_from)
+
+  . <- test_path("config_openapi.yml") %>%
+    conf_load_from_file()
+
+  value <- "responses/200/inherited_data_structures_via_json"
+  from <- "config_openapi.yml"
+
+  configs <- conf_get(value, from, dir_from, resolve_references = FALSE)
+  res <- conf_handle_reference_json(configs, from, dir_from)
+
+  target <- conf_get("data_structures",
+    from = test_path("config.yml"))
+
+  expect_identical(res, target)
+})
+
+test_that("`Inherits`` reference", {
+  Sys.setenv(R_CONFIG_DIR = dir_from)
+
+  . <- test_path("config_openapi.yml") %>%
+    conf_load_from_file()
+
+  value <- "responses/200/inherited_data_structures"
+  from <- "config_openapi.yml"
+
+  configs <- conf_get(value, from, dir_from, resolve_references = FALSE)
+  res <- conf_handle_reference_inherited(configs, from, dir_from)
+
+  target <- conf_get("data_structures",
+    from = test_path("config.yml"))
+
+  expect_identical(res, target)
+})
+

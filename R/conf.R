@@ -7,7 +7,7 @@
 #' @param dir_from [[character]]
 #' @param sep [[character]]
 #' @param sep_opt_name [[character]]
-#' @param inheritance_handling [[logical]]
+#' @param resolve_references [[logical]]
 #' @param force_from_file [[logical]]
 #' @param leaf_as_list [[logical]]
 #'
@@ -18,11 +18,11 @@ conf_get <- function(
   value = character(),
   from = "config.yml",
   # dir_from = here::here(),
-  # dir_from = getwd(),
   dir_from = Sys.getenv("R_CONFIG_DIR", getwd()),
   sep = "/",
   sep_opt_name = "_",
-  inheritance_handling = TRUE,
+  # resolve_references = TRUE,
+  resolve_references = TRUE,
   force_from_file = FALSE,
   leaf_as_list = FALSE
 ) {
@@ -45,8 +45,9 @@ conf_get <- function(
     leaf_as_list = leaf_as_list
   )
 
-  if (inheritance_handling) {
-    conf_handle_inherited(configs, from = from, dir_from = dir_from)
+  if (resolve_references) {
+    # conf_handle_reference_inherited(configs, from = from, dir_from = dir_from)
+    conf_handle_reference_json(configs, from = from, dir_from = dir_from)
     # TODO-20191024-3: Think about persisting handled inheritance entities in
     # memory/options
   } else {
@@ -144,7 +145,8 @@ conf_merge <- function(config_x, config_y) {
 #' @export
 conf_auto_load_internal <- function(pkgname) {
   env_auto_load_internal <- as.logical(
-    Sys.getenv("CONFX_AUTO_LOAD_INTERNAL", FALSE))
+    Sys.getenv("CONFX_AUTO_LOAD_INTERNAL", FALSE)
+  )
   if (env_auto_load_internal) {
     conf_load(system.file(package = pkgname))
   } else {

@@ -13,3 +13,7 @@ default:
       description: The response
       schema:
         $ref: "#/components/schemas/User"
+      inherited_data_structures:
+        inherits: config.yml/data_structures
+      inherited_data_structures_via_json:
+        $ref: "config.yml#/data_structures"

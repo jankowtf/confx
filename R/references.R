@@ -1,4 +1,9 @@
-#' Title
+
+# Has reference -----------------------------------------------------------
+
+#' Check for existence of `yaml` file reference
+#'
+#' Check for existence of `yaml` file reference
 #'
 #' @param value [[character]]
 #'
@@ -7,24 +12,44 @@ conf_has_reference <- function(value) {
   stringr::str_detect(value, "^.*\\.yml")
 }
 
-#' Title
+#' Check for existence of `$ref` reference
 #'
-#' @param value [[character]]
+#' Check for existence of `$ref` reference
 #'
-#' @return [[character]]
-conf_resolve_reference <- function(value) {
-  stringr::str_extract(value, "^.*\\.yml")
+#' @param configs [[list]]
+#' @param name [[character]]
+#'
+#' @return [[logical]]
+conf_has_reference_json <- function(configs) {
+  ref <- conf_get_reference_id_json()
+  ref %in% names(configs)
 }
 
-#' Title
+#' Check for existence of `inherits` reference
+#'
+#' Check for existence of `inherits` file reference
+#'
+#' TODO-20191026-7: Write doc for `conf_has_reference_inherits()`
+#'
+#' @param configs [[list]]
+#' @param name [[character]]
+#'
+#' @return [[logical]]
+conf_has_reference_inherits <- function(configs, name = "inherits") {
+  name %in% names(configs)
+}
+
+# Handle references -------------------------------------------------------
+
+#' Handle file references
 #'
 #' @param value [[value]]
 #' @param from [[value]]
 #'
 #' @return [[value]]
-conf_handle_reference <- function(value, from) {
+conf_handle_reference_file <- function(value, from) {
   if (conf_has_reference(value)) {
-    from <- conf_resolve_reference(value)
+    from <- conf_resolve_reference_file(value)
     value <- stringr::str_remove(value, stringr::str_c(from, "/"))
   }
   list(
@@ -33,134 +58,129 @@ conf_handle_reference <- function(value, from) {
   )
 }
 
-
-#' Title
+#' Handle references to inherited configs
 #'
-#' TODO-20191026-7: Write doc for `conf_has_inherited()`
+#' TODO-20191026-10: Write doc for `conf_handle_reference_inherited()`
 #'
 #' @param configs [[list]]
+#' @param from [[character]]
+#' @param dir_from [[character]]
 #' @param name [[character]]
 #'
-#' @return [[logical]]
-conf_has_inherited <- function(configs, name = "inherits") {
-  name %in% names(configs)
+#' @return [[list] or [character]]
+conf_handle_reference_inherited <- function(
+  configs,
+  from,
+  # dir_from = here::here(),
+  # dir_from = getwd(),
+  dir_from = Sys.getenv("R_CONFIG_DIR", getwd()),
+  # name = "inherits",
+  drop_ref_link = TRUE
+) {
+  ref_id <- conf_get_reference_id_inherited()
+
+  if (conf_has_reference_inherits(configs)) {
+    configs_inherited <- conf_resolve_reference_inherited(
+      configs[[ref_id]],
+      from = from,
+      dir_from = dir_from
+    )
+
+    configs <- conf_merge_referenced(configs_inherited, configs)
+
+    if (drop_ref_link) {
+      configs[[ref_id]] <- NULL
+    }
+
+    configs
+  } else {
+    configs
+  }
+}
+
+#' Handle JSON references
+#'
+#' TODO-20191026-10: Write doc for `conf_handle_reference_json()`
+#'
+#' @param configs [[list]]
+#' @param from [[character]]
+#' @param dir_from [[character]]
+#' @param name [[character]]
+#'
+#' @return [[list] or [character]]
+conf_handle_reference_json <- function(
+  configs,
+  from,
+  # dir_from = here::here()
+  dir_from = Sys.getenv("R_CONFIG_DIR", getwd()),
+  drop_ref_link = TRUE
+) {
+  ref_id <- conf_get_reference_id_json()
+
+  if (conf_has_reference_json(configs)) {
+    configs_referenced <-
+      conf_resolve_reference_json(
+        configs[[ref_id]],
+        from = from,
+        dir_from = dir_from
+      )
+
+    configs <- conf_merge_referenced(configs_referenced, configs)
+
+    if (drop_ref_link) {
+      configs[[ref_id]] <- NULL
+    }
+
+    configs
+  } else {
+    configs
+  }
+}
+
+# Resolve references ------------------------------------------------------
+
+#' Resolve file reference
+#'
+#' @param value [[character]]
+#'
+#' @return [[character]]
+conf_resolve_reference_file <- function(value) {
+  stringr::str_extract(value, "^.*\\.yml")
 }
 
 #' Title
 #'
-#' TODO-20191026-8: Write doc for `conf_resolve_inherited()`
+#' TODO-20191026-8: Write doc for `conf_resolve_reference_inherited()`
 #'
 #' @param value_reference [[list] or [character]]
 #' @param from [[character]]
 #' @param dir_from [[character]]
 #'
 #' @return [[list] or [character]]
-conf_resolve_inherited <- function(value_reference, from, dir_from) {
-  config_ref <- conf_handle_reference(value_reference, from)
+conf_resolve_reference_inherited <- function(value_reference, from, dir_from) {
+  config_ref <- conf_handle_reference_file(value_reference, from)
   conf_get(value = config_ref$value, from = config_ref$from, dir_from = dir_from)
 }
 
-#' Title
+#' Resolve JSON reference
 #'
-#' TODO-20191026-9: Write doc for `conf_merge_inherited()`
-#'
-#' @param configs_inherited [[list]]
-#' @param configs [[list]]
-#'
-#' @return [[list]]
-conf_merge_inherited <- function(configs_inherited, configs) {
-  conf_merge(configs_inherited, configs)
-}
-
-#' Title
-#'
-#' TODO-20191026-10: Write doc for `conf_handle_inherited()`
-#'
-#' @param configs [[list]]
-#' @param from [[character]]
-#' @param dir_from [[character]]
-#' @param name [[character]]
-#'
-#' @return [[list] or [character]]
-conf_handle_inherited <- function(
-  configs,
-  from,
-  # dir_from = here::here(),
-  # dir_from = getwd(),
-  dir_from = Sys.getenv("R_CONFIG_DIR", getwd()),
-  name = "inherits"
-) {
-  if (conf_has_inherited(configs)) {
-    configs_inherited <- conf_resolve_inherited(configs[[name]], from = from,
-      dir_from = dir_from)
-    conf_merge_inherited(configs_inherited, configs)
-  } else {
-    configs
-  }
-}
-
-# OpenAPI references ------------------------------------------------------
-
-#' Title
-#'
-#' TODO-20191026-10: Write doc for `conf_handle_inherited()`
-#'
-#' @param configs [[list]]
-#' @param from [[character]]
-#' @param dir_from [[character]]
-#' @param name [[character]]
-#'
-#' @return [[list] or [character]]
-handle_conf_reference <- function(
-  configs,
-  from,
-  # dir_from = here::here()
-  # dir_from = getwd()
-  dir_from = Sys.getenv("R_CONFIG_DIR", getwd())
-) {
-  ref <- "$ref"
-  if (has_conf_reference(configs)) {
-    configs_inherited <-
-      resolve_conf_reference(configs[[ref]], from = from,
-        dir_from = dir_from)
-    conf_merge_inherited(configs_inherited, configs)
-  } else {
-    configs
-  }
-}
-
-#' Check for existence of `$ref` reference
-#'
-#' Check for existence of `$ref` reference
-#'
-#' @param configs [[list]]
-#' @param name [[character]]
-#'
-#' @return [[logical]]
-has_conf_reference <- function(configs) {
-  ref <- "$ref"
-  ref %in% names(configs)
-}
-
-#' Title
-#'
-#' TODO-20191026-8: Write doc for `resolve_conf_reference()`
+#' TODO-20191026-8: Write doc for `conf_resolve_reference_json()`
 #'
 #' @param path_reference [[list] or [character]]
 #' @param from [[character]]
 #' @param dir_from [[character]]
 #'
 #' @return [[list] or [character]]
-resolve_conf_reference <- function(path_reference, from, dir_from) {
-  reference <- resolve_json_reference(path_reference)
+conf_resolve_reference_json <- function(path_reference, from, dir_from) {
+  reference <- conf_resolve_reference_json_(path_reference)
 
   reference$from <- reference$from %>%
-    handle_reference_scope(from_this = from)
+    conf_handle_reference_scope(from_this = from)
 
   conf_get(value = reference$path, from = reference$from, dir_from = dir_from)
 }
 
-resolve_json_reference <- function(uri) {
+conf_resolve_reference_json_ <- function(uri) {
   # Ref syntax
   # https://tools.ietf.org/html/rfc3986
   validate_json_reference(uri)
@@ -170,12 +190,37 @@ resolve_json_reference <- function(uri) {
   path <- uri %>%
     stringr::str_remove(stringr::str_c(from, "/"))
 
-  list(from = from, path = path)
+  if (from != "#") {
+    from <- from %>%
+      stringr::str_remove("#$")
+  }
+
+  list(
+    from = from,
+    path = path
+  )
 }
+
+# Merge references --------------------------------------------------------
+
+#' Title
+#'
+#' TODO-20191026-9: Write doc for `conf_merge_referenced()`
+#'
+#' @param configs_inherited [[list]]
+#' @param configs [[list]]
+#'
+#' @return [[list]]
+conf_merge_referenced <- function(configs_inherited, configs) {
+  conf_merge(configs_inherited, configs)
+}
+
+# Validate references -----------------------------------------------------
 
 validate_json_reference <- function(
   uri,
-  regexp = "^#/.*(/.*)?"
+  # regexp = "^#/.*(/.*)?"
+  regexp = ".*#/.*(/.*)?"
   # regexp = "^(#|\\.{2})/(.*/)?/.*\\.(json|yml)#(/.*)?"
 ) {
   validated <- uri %>%
@@ -191,7 +236,19 @@ validate_json_reference <- function(
   }
 }
 
-handle_reference_scope <- function(from, from_this) {
+# Reference IDs -----------------------------------------------------------
+
+conf_get_reference_id_json <- function() {
+  "$ref"
+}
+
+conf_get_reference_id_inherited <- function() {
+  "inherits"
+}
+
+# Misc --------------------------------------------------------------------
+
+conf_handle_reference_scope <- function(from, from_this) {
   if (from == "#") {
     from_this
   } else {

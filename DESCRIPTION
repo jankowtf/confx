@@ -1,11 +1,13 @@
 Type: Package
 Package: confx
-Title: What the Package Does (Title Case)
-Version: 0.0.0.9016
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Title: Managing configuration environments including referencing and in-memory caching
+Version: 0.0.0.9018
+Authors@R: person("Janko", "Thyson", email = "janko.thyson@rappster.io",
+                  role = c("aut", "cre"))
+Description: Manage configuration values across multiple environments (e.g.
+  development, test, production). Cache config file content to local memory. 
+  Reference values within or across configuration files. 
+  Read values either from cache or from file.
 License: What license is it under?
 Imports: 
     here,

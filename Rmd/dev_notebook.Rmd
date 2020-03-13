@@ -21,8 +21,8 @@ conf_load(dir = dir_from)
 value <- "responses/200/schema"
 from <- "config_openapi.yml"
 
-configs <- conf_get(value, from, dir_from, inheritance_handling = FALSE)
-res <- handle_conf_reference(configs, from, dir_from)
+configs <- conf_get(value, from, dir_from, resolve_references = FALSE)
+res <- conf_handle_reference_json(configs, from, dir_from)
 
 ```
 

@@ -7,25 +7,24 @@
 #' @return  [[list]]
 #'
 #' @export
-load_conf <- function(
+conf_load <- function(
   # dir = here::here(),
-  # from = here::here(),
-  from = getwd(),
+  dir = Sys.getenv("R_CONFIG_DIR", getwd()),
   pattern_disregard = "^(_|\\.|codecov|travis)"
 ) {
-  conf_files <- fs::dir_ls(from, type = "file", regexp = "\\.yml$")
+  config_files <- fs::dir_ls(dir, type = "file", regexp = "\\.yml$")
 
   # Filter out special configs such as for TravisCI and `{covr}`:
-  idx <- conf_files %>%
+  idx <- config_files %>%
     fs::path_file() %>%
     stringr::str_detect(pattern_disregard, negate = TRUE)
-  conf_files <- conf_files[idx]
+  config_files <- config_files[idx]
 
   # Read config file content and put it into an actual option:
-  conf_files %>%
-    purrr::walk(conf_load__inner)
+  config_files %>%
+    purrr::walk(conf_load_from_file)
 
-  conf_files
+  config_files
 }
 
 #' Load all configs in a directory into options \lifecycle{experimental}
@@ -34,17 +33,17 @@ load_conf <- function(
 #' - Greps for files with extension as defined/returned by
 #' `.SYS_VALID_CONF_EXTENSIONS()` while disregarding extensions as
 #' defined/returned by `.SYS_DISREGARDED_FILE_EXTENSIONS()``
-#' - Maps `load_conf_from_file()` to those grep results
+#' - Maps `conf_load_from_file()` to those grep results
 #'
-#' TODO-20191026-2: Write doc for `load_conf_from_dir()`
+#' TODO-20191026-2: Write doc for `conf_load_from_dir()`
 #'
 #' @param dir [[character]]
 #'
 #' @return  [[list]]
 #'
-#' @seealso [conf::load_conf_from_file()]
+#' @seealso [conf::conf_load_from_file()]
 #' @export
-load_conf_from_dir <- function(
+conf_load_from_dir <- function(
   # dir = here::here(),
   dir = getwd(),
   regexp_valid_files = SYS_VALID_CONF_EXTENSIONS(as_regexp = TRUE),
@@ -62,12 +61,12 @@ load_conf_from_dir <- function(
 
   # Read config file content and put it into an actual option:
   conf_files %>%
-    purrr::walk(load_conf_from_file)
+    purrr::walk(conf_load_from_file)
 
   conf_files
 }
 
-load_conf_from_file <- function(
+conf_load_from_file <- function(
   file,
   sep_opt_name = "_",
   verbose = TRUE

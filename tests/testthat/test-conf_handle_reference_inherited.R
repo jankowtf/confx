@@ -1,14 +1,15 @@
 dir_from <- test_path()
 
-test_that("conf_handle_inherited() works", {
+test_that("conf_handle_reference_inherited() works", {
   # skip_on_travis()
   conf_load(dir = dir_from)
   # options() %>% names() %>% stringr::str_subset("\\.yml") %>% print()
 
   value <- "data_structures/data_structure_d/0.0.2"
   from <- "config_2.yml"
-  configs <- conf_get(value, from, dir_from, inheritance_handling = FALSE)
-  res <- conf_handle_inherited(configs, from, dir_from)
+  configs <- conf_get(value, from, dir_from, resolve_references = FALSE)
+  res <- conf_handle_reference_inherited(configs, from, dir_from,
+    drop_ref_link = FALSE)
 
   expect_identical(res,
     list(cols = c(
@@ -21,14 +22,15 @@ test_that("conf_handle_inherited() works", {
   )
 })
 
-test_that("conf_handle_inherited() works: inter-config", {
+test_that("conf_handle_reference_inherited() works: inter-config", {
   # skip_on_travis()
   conf_load(dir = dir_from)
 
   value <- "data_structures/data_structure_e"
   from <- "config_2.yml"
-  configs <- conf_get(value, from, dir_from, inheritance_handling = FALSE)
-  res <- conf_handle_inherited(configs, from, dir_from)
+  configs <- conf_get(value, from, dir_from, resolve_references = FALSE)
+  res <- conf_handle_reference_inherited(configs, from, dir_from,
+    drop_ref_link = FALSE)
 
   expect_identical(res,
     list(

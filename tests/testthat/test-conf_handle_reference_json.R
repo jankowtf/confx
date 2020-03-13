@@ -7,15 +7,16 @@
 
 dir_from <- test_path()
 
-test_that("handle_conf_reference() works", {
+test_that("conf_handle_reference_json() works", {
   # skip_on_travis()
   conf_load(dir = dir_from)
   # options() %>% names() %>% stringr::str_subset("\\.yml") %>% print()
 
   value <- "responses/200/schema"
   from <- "config_openapi.yml"
-  configs <- conf_get(value, from, dir_from, inheritance_handling = FALSE)
-  res <- handle_conf_reference(configs, from, dir_from)
+  configs <- conf_get(value, from, dir_from, resolve_references = FALSE)
+  res <- conf_handle_reference_json(configs, from, dir_from,
+    drop_ref_link = FALSE)
 
   expect_identical(res,
     list(
@@ -32,14 +33,14 @@ test_that("handle_conf_reference() works", {
   )
 })
 
-test_that("handle_conf_reference() works: inter-config", {
+test_that("conf_handle_reference_json() works: inter-config", {
   # skip_on_travis()
   conf_load(dir = dir_from)
 
   value <- "data_structures/data_structure_e"
   from <- "config_2.yml"
-  configs <- conf_get(value, from, dir_from, inheritance_handling = FALSE)
-  res <- handle_conf_reference(configs, from, dir_from)
+  configs <- conf_get(value, from, dir_from, resolve_references = FALSE)
+  res <- conf_handle_reference_json(configs, from, dir_from)
 
   expect_identical(res,
     list(

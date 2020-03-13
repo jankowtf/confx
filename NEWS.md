@@ -1,3 +1,38 @@
+# confx 0.0.0.9018 (development version)
+
+Inter-file JSON referencing, naming convention alignment and `{renv}` alignment
+
+Fixed/closed:
+
+- `{renv}` warnings due to changed caching paradigm
+
+Changed:
+
+- Updated some `{renv}` dependencies
+- Renamed multiple functions to `conf_*` schema
+    
+New:
+
+- Added and tested inter-file JSON referencing
+
+--------------------------------------------------------------------------------
+
+# confx 0.0.0.9017 (development version)
+
+`R_CONFIG_DIR` for `conf_load()`
+
+Fixed/closed:
+
+Changed:
+
+- Changed default value of `dir_from` to use env var `R_CONFIG_DIR` if it exists:
+
+    - `conf_load()`
+    
+New:
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9016 (development version)
 
 Default value of `dir_from` via environment variable `R_CONFIG_DIR` if specified
@@ -14,7 +49,6 @@ Changed:
     - `load_conf_from_dir()`
     - `handle_conf_reference()`
     - `conf_handle_inherited()`
-    - `conf_load()`
     
 New:
 

@@ -1,31 +1,23 @@
-#' Load configs into options \lifecycle{experimental}
-#'
-#' TODO-20191026-2: Write doc for `conf_load()`
-#'
-#' @param dir [[character]]
-#'
-#' @return  [[list]]
-#'
-#' @export
-conf_load <- function(
+load_conf <- function(
   # dir = here::here(),
-  dir = getwd(),
+  # from = here::here(),
+  from = getwd(),
   pattern_disregard = "^(_|\\.|codecov|travis)"
 ) {
-  .Deprecated("load_conf")
-  config_files <- fs::dir_ls(dir, type = "file", regexp = "\\.yml$")
+  .Deprecated("conf_load")
+  conf_files <- fs::dir_ls(from, type = "file", regexp = "\\.yml$")
 
   # Filter out special configs such as for TravisCI and `{covr}`:
-  idx <- config_files %>%
+  idx <- conf_files %>%
     fs::path_file() %>%
     stringr::str_detect(pattern_disregard, negate = TRUE)
-  config_files <- config_files[idx]
+  conf_files <- conf_files[idx]
 
   # Read config file content and put it into an actual option:
-  config_files %>%
+  conf_files %>%
     purrr::walk(conf_load__inner)
 
-  config_files
+  conf_files
 }
 
 conf_load__inner <- function(
@@ -33,7 +25,7 @@ conf_load__inner <- function(
   .sep_opt_name = "_",
   .verbose = TRUE
 ) {
-  .Deprecated("load_conf_from_file")
+  .Deprecated("conf_load_from_file")
   if (.verbose) {
     message(stringr::str_glue(
       "Loading configs into options: {fs::path_file(.file)}"))

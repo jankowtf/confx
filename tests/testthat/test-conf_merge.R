@@ -30,8 +30,8 @@ test_that("conf_merge() works (inheritance explicit)", {
 
   value <- "data_structures/data_structure_d/0.0.2"
   from <- "config_2.yml"
-  configs <- conf_get(value, from, inheritance_handling = FALSE)
-  res <- conf_handle_inherited(configs, from)
+  configs <- conf_get(value, from, resolve_references = FALSE)
+  res <- conf_handle_reference_inherited(configs, from, drop_ref_link = FALSE)
 
   expect_identical(res,
     list(cols = c(
@@ -54,18 +54,18 @@ test_that("conf_merge() works (inheritance default/production)", {
 
   value <- "db_name"
   from <- "config_2.yml"
-  configs <- conf_get(value, from, inheritance_handling = FALSE)
-  res <- conf_handle_inherited(configs, from)
+  configs <- conf_get(value, from, resolve_references = FALSE)
+  res <- conf_handle_reference_inherited(configs, from)
 
   expect_identical(res, "db_prod")
 
   conf_load(dir = dir_from)
-  # configs <- conf_get(from = from, inheritance_handling = FALSE)
+  # configs <- conf_get(from = from, resolve_references = FALSE)
 
   value <- "data_structures/data_structure_d/0.0.2"
   from <- "config_2.yml"
-  configs <- conf_get(value, from, inheritance_handling = FALSE)
-  res <- conf_handle_inherited(configs, from)
+  configs <- conf_get(value, from, resolve_references = FALSE)
+  res <- conf_handle_reference_inherited(configs, from, drop_ref_link = FALSE)
 
   expect_identical(res,
     list(cols = c(
