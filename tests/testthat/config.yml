@@ -1,5 +1,6 @@
 default:
   db_name: db_default
+  db_host: localhost
   col_names:
     .col_id: id
     .col_name: name

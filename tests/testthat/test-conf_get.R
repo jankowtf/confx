@@ -94,3 +94,22 @@ test_that("`Inherits`` reference", {
   expect_identical(res, target)
 })
 
+test_that("Temporary switch of config environment", {
+  # Sys.setenv(R_CONFIG_ACTIVE = "default")
+
+  . <- test_path("config_2.yml") %>%
+    conf_load_from_file()
+
+  from <- "config_2.yml"
+
+  res <- conf_get("db_name", from, dir_from, config = "test")
+  target <- "db_test"
+
+  expect_identical(res, target)
+
+  res <- conf_get("db_host", from, dir_from, config = "test")
+  target <- "localhost"
+
+  expect_identical(res, target)
+})
+

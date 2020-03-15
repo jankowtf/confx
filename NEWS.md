@@ -1,3 +1,18 @@
+# confx 0.0.0.9019 (development version)
+
+Temporary switch of config environment
+
+Fixed/closed:
+
+Changed:
+
+- Added function args `config` and `use_parent` to `conf_get()` so they can be
+passed along to `config::get()`
+    
+New:
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9018 (development version)
 
 Inter-file JSON referencing, naming convention alignment and `{renv}` alignment

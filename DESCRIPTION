@@ -1,7 +1,7 @@
 Type: Package
 Package: confx
 Title: Managing configuration environments including referencing and in-memory caching
-Version: 0.0.0.9018
+Version: 0.0.0.9019
 Authors@R: person("Janko", "Thyson", email = "janko.thyson@rappster.io",
                   role = c("aut", "cre"))
 Description: Manage configuration values across multiple environments (e.g.

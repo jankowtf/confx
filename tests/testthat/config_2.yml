@@ -1,5 +1,6 @@
 default:
   db_name: db_default
+  db_host: localhost
   col_names:
     .col_group: group
     .col_id: id
@@ -25,7 +26,7 @@ default:
       inherits: config.yml/data_structures/data_structure_a
 
 test:
-  db_name: db_prod
+  db_name: db_test
 
 production:
   inherits: test

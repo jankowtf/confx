@@ -1,10 +1,12 @@
-#' Get config \lifecycle{experimental}
+#' Get config value from in-memory cache or from file  \lifecycle{experimental}
 #'
 #' TODO-20191026-1: Write doc for `conf_get()`
 #'
 #' @param value [[character]]
 #' @param from [[character]]
 #' @param dir_from [[character]]
+#' @param config [[character]]
+#' @param use_parent [[logical]]
 #' @param sep [[character]]
 #' @param sep_opt_name [[character]]
 #' @param resolve_references [[logical]]
@@ -19,6 +21,8 @@ conf_get <- function(
   from = "config.yml",
   # dir_from = here::here(),
   dir_from = Sys.getenv("R_CONFIG_DIR", getwd()),
+  config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
+  use_parent = TRUE,
   sep = "/",
   sep_opt_name = "_",
   # resolve_references = TRUE,
@@ -26,12 +30,21 @@ conf_get <- function(
   force_from_file = FALSE,
   leaf_as_list = FALSE
 ) {
+  # Input handling:
+  # Force reading from file in case `config` differs from the env var value of
+  # `R_CONFIG_ACTIVE` as multiple config environments are currently not
+  # available for the in-memory usage case
+  if (config != Sys.getenv("R_CONFIG_ACTIVE", "default")) {
+    force_from_file <- TRUE
+  }
+
   # configs <- getOption(from)
   pkg_this <- devtools::as.package(dir_from)$package
   from_opts <- stringr::str_glue("{pkg_this}{sep_opt_name}{from}")
   configs <- getOption(from_opts)
   if (is.null(configs) || force_from_file) {
-    configs <- config::get(file = fs::path(dir_from, from))
+    configs <- config::get(file = fs::path(dir_from, from), config = config,
+      use_parent = use_parent)
   }
 
   # Early exit:

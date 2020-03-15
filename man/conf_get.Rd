@@ -2,12 +2,14 @@
 % Please edit documentation in R/conf.R
 \name{conf_get}
 \alias{conf_get}
-\title{Get config \lifecycle{experimental}}
+\title{Get config value from in-memory cache or from file  \lifecycle{experimental}}
 \usage{
 conf_get(
   value = character(),
   from = "config.yml",
   dir_from = Sys.getenv("R_CONFIG_DIR", getwd()),
+  config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
+  use_parent = TRUE,
   sep = "/",
   sep_opt_name = "_",
   resolve_references = TRUE,
@@ -21,6 +23,10 @@ conf_get(
 \item{from}{[\link{character}]}
 
 \item{dir_from}{[\link{character}]}
+
+\item{config}{[\link{character}]}
+
+\item{use_parent}{[\link{logical}]}
 
 \item{sep}{[\link{character}]}
 
