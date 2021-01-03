@@ -11,7 +11,7 @@ memory/options
 - TODO-20191026-2: Write doc for `load_conf_from_dir()`
 - TODO-20191026-3: Write doc for `conf_assign()`
 - TODO-20191026-4: Write doc for `conf_merge()`
-- TODO-20191026-5: Write doc for `conf_index_recursively()`
+- TODO-20191026-5: Write doc for `subset_recursively()`
 - TODO-20191026-6: Write doc for `conf_merge_lists()`
 - TODO-20191026-7: Write doc for `conf_has_inherited()`
 - TODO-20191026-8: Write doc for `conf_resolve_inherited()`

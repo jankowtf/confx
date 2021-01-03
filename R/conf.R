@@ -12,9 +12,14 @@
 #' @param resolve_references [[logical]]
 #' @param force_from_file [[logical]]
 #' @param leaf_as_list [[logical]]
+#' @param verbose [[logical]]
 #'
 #' @return [[list] or [character]]
 #'
+#' @importFrom config get
+#' @importFrom fs path
+#' @importFrom pkgload pkg_name
+#' @importFrom stringr str_glue str_split
 #' @export
 conf_get <- function(
   value = character(),
@@ -28,7 +33,8 @@ conf_get <- function(
   # resolve_references = TRUE,
   resolve_references = TRUE,
   force_from_file = FALSE,
-  leaf_as_list = FALSE
+  leaf_as_list = FALSE,
+  verbose = FALSE
 ) {
   # Input handling:
   # Force reading from file in case `config` differs from the env var value of
@@ -39,7 +45,8 @@ conf_get <- function(
   }
 
   # configs <- getOption(from)
-  pkg_this <- devtools::as.package(dir_from)$package
+  pkg_this <- pkgload::pkg_name(dir_from)
+  # pkg_this <- devtools::as.package(dir_from)$package
   from_opts <- stringr::str_glue("{pkg_this}{sep_opt_name}{from}")
   configs <- getOption(from_opts)
   if (is.null(configs) || force_from_file) {
@@ -52,10 +59,11 @@ conf_get <- function(
     return(configs)
   }
 
-  configs <- conf_index_recursively(
-    configs,
-    stringr::str_split(value, sep, simplify = TRUE),
-    leaf_as_list = leaf_as_list
+  configs <- subset_recursively(
+    x = configs,
+    index = stringr::str_split(value, sep, simplify = TRUE),
+    leaf_as_list = leaf_as_list,
+    verbose = verbose
   )
 
   if (resolve_references) {
@@ -80,6 +88,8 @@ conf_get <- function(
 #'
 #' @return [[list]]
 #'
+#' @importFrom rlang caller_env eval_tidy sym syms
+#' @importFrom purrr map map2 flatten map_chr
 #' @export
 conf_assign <- function(
   config_list,

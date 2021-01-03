@@ -1,3 +1,45 @@
+# confx 0.0.0.9020 (2021-01-03)
+
+Queries for unnamed entities
+
+Fixed/closed:
+
+Changed:
+
+- Changed default repository to https://packagemanager.rstudio.com/all/__linux__/focal/latest
+- Changed repository from CRAN to RSPM
+- More systematic YAML files for unit tests:
+    - Changed `tests/testthat/config_2.yml` to ``tests/testthat/config_002.yml`
+- Renamed:
+    - `test-conf_get.R` to `test-get.R`
+    - `conf_index_recursively()` to `subset_recursively()`
+- Refactored:
+    - `subset_recursively()`
+    - `handle_conf_query()`
+- Moved
+    - `subset_recursively()` to `R/subset.R`
+    - Content of `R/packages.R` into `R/confx-package.R`. Deleted `R/packages.R`
+    
+New:
+
+- Added functions:
+    - `handle_conf_query()`
+    - `parse_query()`
+    - `handle_query_vectorized_2()`
+    - `apply_query_iter_2()`
+    - `apply_query_2()`
+    - `eval_query_call_one_arg()`
+    - `eval_query_call_two_args()`
+    - `valid_operators_logical()`
+    - `drop_missing()`
+    - `%!in%()`
+- Added unit tests:
+    - `test-get_with_query.R`
+- Misc:
+    - Using `{styler}`
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9019 (development version)
 
 Temporary switch of config environment

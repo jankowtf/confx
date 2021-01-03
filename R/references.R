@@ -8,6 +8,8 @@
 #' @param value [[character]]
 #'
 #' @return [[logical]]
+#'
+#' @importFrom stringr str_detect
 conf_has_reference <- function(value) {
   stringr::str_detect(value, "^.*\\.yml")
 }
@@ -17,7 +19,6 @@ conf_has_reference <- function(value) {
 #' Check for existence of `$ref` reference
 #'
 #' @param configs [[list]]
-#' @param name [[character]]
 #'
 #' @return [[logical]]
 conf_has_reference_json <- function(configs) {
@@ -47,6 +48,8 @@ conf_has_reference_inherits <- function(configs, name = "inherits") {
 #' @param from [[value]]
 #'
 #' @return [[value]]
+#'
+#' @importFrom stringr str_remove
 conf_handle_reference_file <- function(value, from) {
   if (conf_has_reference(value)) {
     from <- conf_resolve_reference_file(value)
@@ -64,8 +67,8 @@ conf_handle_reference_file <- function(value, from) {
 #'
 #' @param configs [[list]]
 #' @param from [[character]]
+#' @param drop_ref_link [[logical]]
 #' @param dir_from [[character]]
-#' @param name [[character]]
 #'
 #' @return [[list] or [character]]
 conf_handle_reference_inherited <- function(
@@ -104,8 +107,8 @@ conf_handle_reference_inherited <- function(
 #'
 #' @param configs [[list]]
 #' @param from [[character]]
+#' @param drop_ref_link [[logical]]
 #' @param dir_from [[character]]
-#' @param name [[character]]
 #'
 #' @return [[list] or [character]]
 conf_handle_reference_json <- function(
@@ -144,6 +147,8 @@ conf_handle_reference_json <- function(
 #' @param value [[character]]
 #'
 #' @return [[character]]
+#'
+#' @importFrom stringr str_extract
 conf_resolve_reference_file <- function(value) {
   stringr::str_extract(value, "^.*\\.yml")
 }
@@ -157,7 +162,11 @@ conf_resolve_reference_file <- function(value) {
 #' @param dir_from [[character]]
 #'
 #' @return [[list] or [character]]
-conf_resolve_reference_inherited <- function(value_reference, from, dir_from) {
+conf_resolve_reference_inherited <- function(
+  value_reference,
+  from,
+  dir_from
+) {
   config_ref <- conf_handle_reference_file(value_reference, from)
   conf_get(value = config_ref$value, from = config_ref$from, dir_from = dir_from)
 }
@@ -171,7 +180,11 @@ conf_resolve_reference_inherited <- function(value_reference, from, dir_from) {
 #' @param dir_from [[character]]
 #'
 #' @return [[list] or [character]]
-conf_resolve_reference_json <- function(path_reference, from, dir_from) {
+conf_resolve_reference_json <- function(
+  path_reference,
+  from,
+  dir_from
+) {
   reference <- conf_resolve_reference_json_(path_reference)
 
   reference$from <- reference$from %>%
@@ -180,6 +193,14 @@ conf_resolve_reference_json <- function(path_reference, from, dir_from) {
   conf_get(value = reference$path, from = reference$from, dir_from = dir_from)
 }
 
+#' Resolve JSON reference (inner)
+#'
+#' @param uri [[character]]
+#'
+#' @return
+#'
+#' @importFrom stringr str_extract str_remove
+#' @examples
 conf_resolve_reference_json_ <- function(uri) {
   # Ref syntax
   # https://tools.ietf.org/html/rfc3986
@@ -217,6 +238,15 @@ conf_merge_referenced <- function(configs_inherited, configs) {
 
 # Validate references -----------------------------------------------------
 
+#' Validate JSON references
+#'
+#' @param uri [[character]]
+#' @param regexp [[character]]
+#'
+#' @return
+#'
+#' @importFrom stringr str_detect str_glue
+#' @examples
 validate_json_reference <- function(
   uri,
   # regexp = "^#/.*(/.*)?"
@@ -238,16 +268,34 @@ validate_json_reference <- function(
 
 # Reference IDs -----------------------------------------------------------
 
+#' Reference ID for JSON/OpenAPI
+#'
+#' @return
+#'
+#' @examples
 conf_get_reference_id_json <- function() {
   "$ref"
 }
 
+#' Reference ID for `inherits` YAML entity
+#'
+#' @return
+#'
+#' @examples
 conf_get_reference_id_inherited <- function() {
   "inherits"
 }
 
 # Misc --------------------------------------------------------------------
 
+#' Handle reference scope
+#'
+#' @param from
+#' @param from_this
+#'
+#' @return
+#'
+#' @examples
 conf_handle_reference_scope <- function(from, from_this) {
   if (from == "#") {
     from_this

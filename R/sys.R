@@ -1,3 +1,11 @@
+# TODO-20210203-2332: Refactor those into {valid} functions
+#' Global variable for valid conf extensions
+#'
+#' @param as_regexp
+#'
+#' @return
+#'
+#' @examples
 SYS_VALID_CONF_EXTENSIONS <- function(as_regexp = FALSE) {
   file_extensions <- c(
     ".yml",
@@ -11,6 +19,13 @@ SYS_VALID_CONF_EXTENSIONS <- function(as_regexp = FALSE) {
   file_extensions
 }
 
+#' Global variable for disregarded conf files
+#'
+#' @param as_regexp
+#'
+#' @return
+#'
+#' @examples
 SYS_DISREGARDED_CONF_FILES <- function(as_regexp = FALSE) {
   file_names_1 <- c(
     "codecov",

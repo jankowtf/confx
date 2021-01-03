@@ -18,7 +18,7 @@ conf_handle_reference_json(
 
 \item{dir_from}{[\link{character}]}
 
-\item{name}{[\link{character}]}
+\item{drop_ref_link}{[\link{logical}]}
 }
 \value{
 [\link{list} or \link{character}]

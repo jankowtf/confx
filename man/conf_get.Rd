@@ -14,7 +14,8 @@ conf_get(
   sep_opt_name = "_",
   resolve_references = TRUE,
   force_from_file = FALSE,
-  leaf_as_list = FALSE
+  leaf_as_list = FALSE,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ conf_get(
 \item{force_from_file}{[\link{logical}]}
 
 \item{leaf_as_list}{[\link{logical}]}
+
+\item{verbose}{[\link{logical}]}
 }
 \value{
 [\link{list} or \link{character}]

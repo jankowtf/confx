@@ -1,0 +1,28 @@
+default:
+  host:
+    server_001:
+      url: https://dev-server-001.com
+      port: 8000
+  settings_versions:
+    - id: v1
+      valid_from: 2020-01-01
+      valid_until: 2020-03-31
+      content: hello world!
+    - id: v2
+      valid_from: 2020-04-01
+      valid_until: 2020-09-30
+      content: Hello World!
+    - id: v3
+      valid_from: 2020-10-01
+      valid_until: 2020-12-31
+      content: HELLO WORLD!
+
+prod:
+  host:
+    server_001:
+      url: https://prod-server-001.com
+      port: 8000
+    server_002:
+      url: https://prod-server-002.com
+      port: 8000
+ 

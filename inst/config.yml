@@ -1,3 +1,0 @@
-default:
-  col_names:
-    .col_id: id

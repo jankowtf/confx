@@ -8,8 +8,6 @@ conf_has_reference_json(configs)
 }
 \arguments{
 \item{configs}{[\link{list}]}
-
-\item{name}{[\link{character}]}
 }
 \value{
 [\link{logical}]

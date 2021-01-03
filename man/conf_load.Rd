@@ -11,6 +11,8 @@ conf_load(
 }
 \arguments{
 \item{dir}{[\link{character}]}
+
+\item{pattern_disregard}{[\link{character}]}
 }
 \value{
 [\link{list}]

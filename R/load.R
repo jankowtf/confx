@@ -3,9 +3,13 @@
 #' TODO-20191026-2: Write doc for `conf_load()`
 #'
 #' @param dir [[character]]
+#' @param pattern_disregard [[character]]
 #'
 #' @return  [[list]]
 #'
+#' @importFrom fs dir_ls path_file
+#' @importFrom stringr str_detect
+#' @importFrom purrr walk
 #' @export
 conf_load <- function(
   # dir = here::here(),
@@ -38,10 +42,16 @@ conf_load <- function(
 #' TODO-20191026-2: Write doc for `conf_load_from_dir()`
 #'
 #' @param dir [[character]]
+#' @param regexp_valid_files [[character]]
+#' @param regexp_disregarded_files [[character]]
 #'
 #' @return  [[list]]
 #'
 #' @seealso [conf::conf_load_from_file()]
+#'
+#' @importFrom fs dir_ls path_file
+#' @importFrom purrr walk
+#' @importFrom stringr str_detect
 #' @export
 conf_load_from_dir <- function(
   # dir = here::here(),
@@ -66,6 +76,20 @@ conf_load_from_dir <- function(
   conf_files
 }
 
+#' Load configs from file
+#'
+#' @param file
+#' @param sep_opt_name
+#' @param verbose
+#'
+#' @return
+#'
+#' @importFrom config get
+#' @importFrom pkgload pkg_name
+#' @importFrom purrr set_names
+#' @importFrom rlang call2 eval_tidy
+#' @importFrom stringr str_glue
+#' @examples
 conf_load_from_file <- function(
   file,
   sep_opt_name = "_",
@@ -75,7 +99,8 @@ conf_load_from_file <- function(
     message(stringr::str_glue(
       "Loading configs into options: {fs::path_file(file)}"))
   }
-  pkg <- devtools::as.package(".")$package
+  # pkg <- devtools::as.package(".")$package
+  pkg <- pkgload::pkg_name(".")
   # opt_name <- fs::path_file(.file)
   opt_name <- stringr::str_glue("{pkg}{sep_opt_name}{fs::path_file(file)}")
   # print(opt_name)

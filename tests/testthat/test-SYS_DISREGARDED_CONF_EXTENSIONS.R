@@ -1,4 +1,4 @@
-context("System function for disregarded conf files")
+# System function for disregarded conf files ------------------------------
 
 test_that("As vector", {
   expect_equal(
@@ -10,7 +10,8 @@ test_that("As vector", {
 test_that("As regexp", {
   expect_equal(
     res <- SYS_DISREGARDED_CONF_FILES(as_regexp = TRUE),
-    "(^(codecov|\\.travis|CODECOV|\\.TRAVIS)\\.yml$)|(^(_|\\.).*\\.yml$)"
+    "(^(codecov|\\.travis|CODECOV|\\.TRAVIS)\\.yml$)|(^(_|\\.).*\\.yml$)" %>%
+      glue::as_glue()
   )
 })
 

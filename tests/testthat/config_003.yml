@@ -1,0 +1,67 @@
+default:
+  object_with_array:
+    - id: "a"
+      value: 1
+    - id: "b"
+      value: 2
+    - id: "c"
+      value: !expr c(3, 4)
+  object_with_array_2:
+    - id: "a"
+      value: 1
+    - id: "a"
+      value: 2
+    - id: "a"
+      value: 3
+    - id: "b"
+      value: 1
+    - id: "b"
+      value: 2
+    - id: "b"
+      value: 3
+    - id: "c"
+      value: !expr c(1, 2)
+    - id: "c"
+      value: !expr c(3, 4)
+  addresses:
+    - street: "a"
+      number: 1
+      floor: 1
+    - street: "b"
+      number: 2
+      floor: 1
+    - street: "b"
+      number: 2
+      floor: 2
+    - street: "b"
+      number: 3
+      floor: 1
+    - street: "c"
+      number: 1
+  versions:
+    - valid_from: 2020-01-01
+      valid_until: 2020-05-31
+      version:
+        major: 0
+        minor: 0
+        patch: 1
+    - valid_from: 2020-06-01
+      valid_until: 2020-08-31
+      version:
+        major: 0
+        minor: 0
+        patch: 2
+      test:
+        - value: "hello"
+        - value: "world"
+    - valid_from: 2020-09-01
+      valid_until: 2020-12-31
+      version:
+        major: 0
+        minor: 1
+        patch: 0
+      test:
+        - value:
+            title: "hello"
+        - value:
+            title: "world"

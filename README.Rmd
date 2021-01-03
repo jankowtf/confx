@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -9,40 +11,136 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%",
-  eval = FALSE
+  out.width = "100%"
 )
 ```
 
 # confx
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/rappster/confx.svg?branch=master)](https://travis-ci.org/rappster/confx)
-[![Codecov test coverage](https://codecov.io/gh/rappster/confx/branch/master/graph/badge.svg)](https://codecov.io/gh/rappster/confx?branch=master)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/confx)](https://CRAN.R-project.org/package=confx)
 <!-- badges: end -->
 
-The goal of confx is to ...
+Extends the scope of [{config}](https://www.github.com/rstudio/config) by offering path-like retrieval, queries for
+unnamed config entities and referencing of entities. Config file content can be
+cached in-memory and can then either be retrieved from cache or from file as
+desired.
 
 ## Installation
 
-You can install the released version of confx from [CRAN](https://CRAN.R-project.org) with:
+Development version from [GitHub](https://github.com/) with:
 
-``` r
-install.packages("confx")
+```{r, eval=FALSE}
+remotes::install_github("rappster/confx")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+## Usage
 
-``` r
-# install.packages("devtools")
-devtools::install_github("rappster/confx")
+### TL;DR
+
+Suppose you have a config file `config.yml` in your package's root directory,
+you either call
+
+```{r, eval=FALSE}
+conf_get("path/to/named/entity")
 ```
-## Example
 
-This is a basic example which shows you how to solve a common problem:
+or 
 
-```{r example}
+```{r, eval=FALSE}
+conf_get("path/to/unnamed/entity/with/query/<query>")
+```
+
+depending on what type of config entity you want to retrieve (named vs. unnamed
+entity)
+
+For more detailed explanation of the package continue reading
+
+### Demo preliminaries
+
+```{r}
 library(confx)
-## basic example code
 ```
+
+The package ships with a demo YAML config file:
+
+```{r}
+(path_to_config <- fs::path_package("confx", "configs/config.yml"))
+```
+
+You can use this file by setting the following environment variable:
+
+```{r}
+Sys.setenv(R_CONFIG_DIR = fs::path_package("confx", "configs"))
+```
+
+### Get named entities
+
+Entire config content:
+
+```{r}
+conf_get()
+```
+
+Entity `host`:
+
+```{r}
+conf_get("host")
+```
+
+Entity `host` but from different config environment:
+
+```{r}
+conf_get("host", config = "prod")
+```
+
+Entity `host/server_001`:
+
+```{r}
+conf_get("host/server_001")
+```
+
+Entity `host/server_001/url`
+
+```{r}
+conf_get("host/server_001/url")
+```
+
+### Get unnamed entities
+
+For unnamed entities (which parse into unnamed lists), you can specify a query consisting of a standard R expression written out as a string:
+
+```{r}
+conf_get("settings_versions/id == 'v1'")
+```
+
+```{r}
+conf_get("settings_versions/valid_from >= '2020-03-01'")
+```
+
+```{r}
+conf_get("settings_versions/
+  valid_from >= '2020-03-01' & 
+  valid_until >= '2020-10-01'")
+```
+
+**DISCLAIMER**
+
+When I said *regular R expressions*, this does not yet reflect the full picture as I started with simple expressions as defined in `valid_operators_logical()`
+
+```{r}
+confx:::valid_operators_logical()
+```
+
+In future releases, you will also (hopefully) be able to write something like
+this:
+
+```{r}
+conf_get("settings_versions/
+  stringr::str_detect(content, 'HELLO')")
+```
+
+### Entity references
+
+TODO

@@ -12,6 +12,10 @@ conf_load_from_dir(
 }
 \arguments{
 \item{dir}{[\link{character}]}
+
+\item{regexp_valid_files}{[\link{character}]}
+
+\item{regexp_disregarded_files}{[\link{character}]}
 }
 \value{
 [\link{list}]

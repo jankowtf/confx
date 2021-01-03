@@ -1,3 +1,16 @@
+# TODO-20210103-2327: Refactor this to use {valid}
+#' File extensions as regexp
+#'
+#' @param x
+#' @param prefix
+#' @param suffix
+#' @param wrap_in_parentheses
+#' @param include_uppercase
+#' @param escape_dots
+#'
+#' @return
+#'
+#' @examples
 regexp__file_extensions_as_regexp <- function(
   x,
   prefix = ".*",

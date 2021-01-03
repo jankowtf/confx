@@ -7,7 +7,7 @@ test_that("Options are cleaned up", {
     rlang::eval_tidy()
   expect_identical(options(opt_name) %>% unlist(), NULL)
 
-  opt_name <- stringr::str_glue("{PKG_THIS}{SEP_OPT_NAME}config_2.yml")
+  opt_name <- stringr::str_glue("{PKG_THIS}{SEP_OPT_NAME}config_002.yml")
   arg_list <- list(NULL) %>% purrr::set_names(opt_name)
   rlang::call2(quote(options), !!!arg_list) %>%
     rlang::eval_tidy()
@@ -51,7 +51,7 @@ test_that("conf_assign() works (reference)", {
 })
 
 test_that("conf_assign() works (reference non-standard file)", {
-  from <- "config_2.yml"
+  from <- "config_002.yml"
   configs <- conf_get("data_structures/data_structure_c",
     from = from, dir_from = dir_from)
 

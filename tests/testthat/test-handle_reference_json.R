@@ -38,7 +38,7 @@ test_that("conf_handle_reference_json() works: inter-config", {
   conf_load(dir = dir_from)
 
   value <- "data_structures/data_structure_e"
-  from <- "config_2.yml"
+  from <- "config_002.yml"
   configs <- conf_get(value, from, dir_from, resolve_references = FALSE)
   res <- conf_handle_reference_json(configs, from, dir_from)
 
@@ -56,7 +56,7 @@ test_that("Options are cleaned up", {
     rlang::eval_tidy()
   expect_identical(options(opt_name) %>% unlist(), NULL)
 
-  opt_name <- stringr::str_glue("{PKG_THIS}{SEP_OPT_NAME}config_2.yml")
+  opt_name <- stringr::str_glue("{PKG_THIS}{SEP_OPT_NAME}config_002.yml")
   arg_list <- list(NULL) %>% purrr::set_names(opt_name)
   rlang::call2(quote(options), !!!arg_list) %>%
     rlang::eval_tidy()

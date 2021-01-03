@@ -7,7 +7,7 @@ test_that("Defaults work", {
   #   conf_load_from_dir(test_path()),
   #   c(
   #     "tests/testthat/config.yml",
-  #     "tests/testthat/config_2.yml",
+  #     "tests/testthat/config_002.yml",
   #     "tests/testthat/config_openapi.yml"
   #   )
   # )
@@ -15,7 +15,8 @@ test_that("Defaults work", {
     fs::path_file(conf_load_from_dir(test_path())),
     c(
       "config.yml",
-      "config_2.yml",
+      "config_002.yml",
+      "config_003.yml",
       "config_openapi.yml"
     )
   )

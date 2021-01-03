@@ -1,4 +1,8 @@
+# Test fixtures -----------------------------------------------------------
+
 dir_from <- test_path()
+
+# Branch ------------------------------------------------------------------
 
 test_that("conf_get() works (branch)", {
   # skip_on_travis()
@@ -97,10 +101,10 @@ test_that("`Inherits`` reference", {
 test_that("Temporary switch of config environment", {
   # Sys.setenv(R_CONFIG_ACTIVE = "default")
 
-  . <- test_path("config_2.yml") %>%
+  . <- test_path("config_002.yml") %>%
     conf_load_from_file()
 
-  from <- "config_2.yml"
+  from <- "config_002.yml"
 
   res <- conf_get("db_name", from, dir_from, config = "test")
   target <- "db_test"
