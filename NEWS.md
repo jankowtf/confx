@@ -1,3 +1,11 @@
+# confx 0.0.0.9021 (2021-01-04)
+
+Remote dependency
+
+- Added remote dependency `{rappster/valid}` in `DESCRIPTION` file
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9020 (2021-01-03)
 
 Queries for unnamed entities

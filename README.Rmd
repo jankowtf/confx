@@ -32,6 +32,10 @@ desired.
 Development version from [GitHub](https://github.com/) with:
 
 ```{r, eval=FALSE}
+# GitHub dependencies
+remotes::install_github("rappster/valid")
+
+# Actual package
 remotes::install_github("rappster/confx")
 ```
 
@@ -127,7 +131,7 @@ conf_get("settings_versions/
 
 **DISCLAIMER**
 
-When I said *regular R expressions*, this does not yet reflect the full picture as I started with simple expressions as defined in `valid_operators_logical()`
+When I said *standard R expressions*, this does not yet reflect the full picture as I started with simple expressions as defined in `valid_operators_logical()`
 
 ```{r}
 confx:::valid_operators_logical()

@@ -21,6 +21,10 @@ can then either be retrieved from cache or from file as desired.
 Development version from [GitHub](https://github.com/) with:
 
 ``` r
+# GitHub dependencies
+remotes::install_github("rappster/valid")
+
+# Actual package
 remotes::install_github("rappster/confx")
 ```
 
@@ -50,6 +54,8 @@ For more detailed explanation of the package continue reading
 
 ``` r
 library(confx)
+#> Warning: replacing previous import 'magrittr::set_names' by 'purrr::set_names'
+#> when loading 'confx'
 ```
 
 The package ships with a demo YAML config file:
@@ -188,9 +194,6 @@ query consisting of a standard R expression written out as a string:
 
 ``` r
 conf_get("settings_versions/id == 'v1'")
-#> Warning: 'extract_chain_operators' is deprecated.
-#> Use 'parse_query' instead.
-#> See help("Deprecated")
 #> [[1]]
 #> [[1]]$id
 #> [1] "v1"
@@ -207,9 +210,6 @@ conf_get("settings_versions/id == 'v1'")
 
 ``` r
 conf_get("settings_versions/valid_from >= '2020-03-01'")
-#> Warning: 'extract_chain_operators' is deprecated.
-#> Use 'parse_query' instead.
-#> See help("Deprecated")
 #> [[1]]
 #> [[1]]$id
 #> [1] "v2"
@@ -242,9 +242,6 @@ conf_get("settings_versions/valid_from >= '2020-03-01'")
 conf_get("settings_versions/
   valid_from >= '2020-03-01' & 
   valid_until >= '2020-10-01'")
-#> Warning: 'extract_chain_operators' is deprecated.
-#> Use 'parse_query' instead.
-#> See help("Deprecated")
 #> [[1]]
 #> [[1]]$id
 #> [1] "v3"
@@ -261,7 +258,7 @@ conf_get("settings_versions/
 
 **DISCLAIMER**
 
-When I said *regular R expressions*, this does not yet reflect the full
+When I said *standard R expressions*, this does not yet reflect the full
 picture as I started with simple expressions as defined in
 `valid_operators_logical()`
 

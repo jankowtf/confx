@@ -1,6 +1,6 @@
 Package: confx
 Title: Extended functionality for YAML-based config files
-Version: 0.0.0.9020
+Version: 0.0.0.9021
 Authors@R: 
     person(given = "Janko",
            family = "Thyson",
@@ -29,6 +29,8 @@ Suggests:
     testthat (>= 3.0.0),
     clipr
 Config/testthat/edition: 3
+Remotes:
+    rappster/valid
 RdMacros: 
     lifecycle
 Encoding: UTF-8
