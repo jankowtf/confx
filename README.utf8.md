@@ -1,26 +1,31 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+
 
 # confx
 
 <!-- badges: start -->
-
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/confx)](https://CRAN.R-project.org/package=confx)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/confx)](https://CRAN.R-project.org/package=confx)
 <!-- badges: end -->
 
-Extends the scope of [{config}](https://www.github.com/rstudio/config)
-by offering path-like retrieval, queries for unnamed config entities and
-referencing of entities. Config file content can be cached in-memory and
-can then either be retrieved from cache or from file as desired.
+Extends the scope of [{config}](https://www.github.com/rstudio/config) by offering path-like retrieval, queries for
+unnamed config entities and referencing of entities. Config file content can be
+cached in-memory and can then either be retrieved from cache or from file as
+desired.
 
 ## Installation
 
 Development version from [GitHub](https://github.com/) with:
 
-``` r
+
+```r
 remotes::install_github("rappster/confx")
 ```
 
@@ -28,27 +33,30 @@ remotes::install_github("rappster/confx")
 
 ### TL;DR
 
-Suppose you have a config file `config.yml` in your package’s root
-directory, you either call
+Suppose you have a config file `config.yml` in your package's root directory,
+you either call
 
-``` r
+
+```r
 conf_get("path/to/named/entity")
 ```
 
-or
+or 
 
-``` r
+
+```r
 conf_get("path/to/unnamed/entity/with/query/<query>")
 ```
 
-depending on what type of config entity you want to retrieve (named
-vs. unnamed entity)
+depending on what type of config entity you want to retrieve (named vs. unnamed
+entity)
 
 For more detailed explanation of the package continue reading
 
 ### Demo preliminaries
 
-``` r
+
+```r
 library(confx)
 #> Warning: replacing previous import 'magrittr::set_names' by 'purrr::set_names'
 #> when loading 'confx'
@@ -56,14 +64,16 @@ library(confx)
 
 The package ships with a demo YAML config file:
 
-``` r
+
+```r
 (path_to_config <- fs::path_package("confx", "configs/config.yml"))
 #> /media/janko/Shared/Code/R/Packages/confx/renv/library/R-4.0/x86_64-pc-linux-gnu/confx/configs/config.yml
 ```
 
 You can use this file by setting the following environment variable:
 
-``` r
+
+```r
 Sys.setenv(R_CONFIG_DIR = fs::path_package("confx", "configs"))
 ```
 
@@ -71,7 +81,8 @@ Sys.setenv(R_CONFIG_DIR = fs::path_package("confx", "configs"))
 
 Entire config content:
 
-``` r
+
+```r
 conf_get()
 #> $host
 #> $host$server_001
@@ -135,7 +146,8 @@ conf_get()
 
 Entity `host`:
 
-``` r
+
+```r
 conf_get("host")
 #> $server_001
 #> $server_001$url
@@ -147,7 +159,8 @@ conf_get("host")
 
 Entity `host` but from different config environment:
 
-``` r
+
+```r
 conf_get("host", config = "prod")
 #> $server_001
 #> $server_001$url
@@ -167,7 +180,8 @@ conf_get("host", config = "prod")
 
 Entity `host/server_001`:
 
-``` r
+
+```r
 conf_get("host/server_001")
 #> $url
 #> [1] "https://dev-server-001.com"
@@ -178,17 +192,18 @@ conf_get("host/server_001")
 
 Entity `host/server_001/url`
 
-``` r
+
+```r
 conf_get("host/server_001/url")
 #> [1] "https://dev-server-001.com"
 ```
 
 ### Get unnamed entities
 
-For unnamed entities (which parse into unnamed lists), you can specify a
-query consisting of a standard R expression written out as a string:
+For unnamed entities (which parse into unnamed lists), you can specify a query consisting of a standard R expression written out as a string:
 
-``` r
+
+```r
 conf_get("settings_versions/id == 'v1'")
 #> [[1]]
 #> [[1]]$id
@@ -204,7 +219,8 @@ conf_get("settings_versions/id == 'v1'")
 #> [1] "hello world!"
 ```
 
-``` r
+
+```r
 conf_get("settings_versions/valid_from >= '2020-03-01'")
 #> [[1]]
 #> [[1]]$id
@@ -234,7 +250,8 @@ conf_get("settings_versions/valid_from >= '2020-03-01'")
 #> [1] "HELLO WORLD!"
 ```
 
-``` r
+
+```r
 conf_get("settings_versions/
   valid_from >= '2020-03-01' & 
   valid_until >= '2020-10-01'")
@@ -254,20 +271,20 @@ conf_get("settings_versions/
 
 **DISCLAIMER**
 
-When I said *standard R expressions*, this does not yet reflect the full
-picture as I started with simple expressions as defined in
-`valid_operators_logical()`
+When I said *standard R expressions*, this does not yet reflect the full picture as I started with simple expressions as defined in `valid_operators_logical()`
 
-``` r
+
+```r
 confx:::valid_operators_logical()
 #>      ==      !=    %in%   %!in%       <      <=       >      >= 
 #>    "=="    "!="  "%in%" "%!in%"     "<"    "<="     ">"    ">="
 ```
 
-In future releases, you will also (hopefully) be able to write something
-like this:
+In future releases, you will also (hopefully) be able to write something like
+this:
 
-``` r
+
+```r
 conf_get("settings_versions/
   stringr::str_detect(content, 'HELLO')")
 #> NULL

@@ -32,10 +32,6 @@ desired.
 Development version from [GitHub](https://github.com/) with:
 
 ```{r, eval=FALSE}
-# GitHub dependencies
-remotes::install_github("rappster/valid")
-
-# Actual package
 remotes::install_github("rappster/confx")
 ```
 
