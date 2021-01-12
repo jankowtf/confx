@@ -1,4 +1,5 @@
 test_that("Tokenize query item", {
+  skip("Deprecated")
   result <- "street==c('a', 'b')" %>%
     tokenize_query_item(op = "==")
 
@@ -10,6 +11,7 @@ test_that("Tokenize query item", {
 # Operators ---------------------------------------------------------------
 
 test_that("Handle extracted operators", {
+  skip("Deprecated")
   result <- c("<=", "<") %>%
     handle_extracted_operators()
 

@@ -16,7 +16,8 @@ handle_conf_query <- function(
   x,
   query,
   op,
-  verbose = FALSE) {
+  verbose = FALSE
+) {
   # LEGACY (KEEP AS REFERENCE FOR A WHILE)
   if (FALSE) {
     # Extract chain operators
@@ -144,7 +145,8 @@ handle_query_vectorized_2 <- function(
 apply_query_2 <- function(
   on,
   query,
-  verbose = FALSE) {
+  verbose = FALSE
+) {
   query
   # result <- query %>% purrr::imap_lgl(function(.query, .op) {
   result <- query %>%
@@ -166,6 +168,10 @@ apply_query_2 <- function(
         recursive_fn = apply_query_2,
         verbose = verbose
       )
+
+      if (verbose) {
+        print(on)
+      }
 
       # Antifragile patch
       if (!length(result)) {

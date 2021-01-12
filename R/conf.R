@@ -49,9 +49,22 @@ conf_get <- function(
   # pkg_this <- devtools::as.package(dir_from)$package
   from_opts <- stringr::str_glue("{pkg_this}{sep_opt_name}{from}")
   configs <- getOption(from_opts)
+
   if (is.null(configs) || force_from_file) {
-    configs <- config::get(file = fs::path(dir_from, from), config = config,
-      use_parent = use_parent)
+    path <- if (!fs::is_absolute_path(from)) {
+      # if (fs::is_file(from)) {
+      #   from
+      # } else {
+        fs::path(dir_from, from)
+      # }
+      # TODO: Current implementation still too ambiguous regarding actual file
+      # path or only file name. But commented out part would break existing
+      # functionality/conventions. Carefully craft a better solution
+    } else {
+      from
+    }
+  # print(path)
+    configs <- config::get(file = path, config = config, use_parent = use_parent)
   }
 
   # Early exit:

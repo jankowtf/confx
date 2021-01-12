@@ -1,3 +1,12 @@
+# confx 0.0.0.9022 (2021-01-12)
+
+Absolute paths
+
+- Fixed bug for cases when `from` corresponds to an absolute paths in call to
+`conf_get()`
+- Added unit test for absolute paths
+- Aligned some unit tests to 3rd edition of `{testthat}`
+
 # confx 0.0.0.9021 (2021-01-04)
 
 Remote dependency

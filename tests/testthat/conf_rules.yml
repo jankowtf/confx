@@ -1,0 +1,178 @@
+default:
+  wage_types:
+    - wage_type: '002'
+      wage_type_desc: Übernachtung 0%
+      bound_lower: 20.0
+      bound_upper: 800.0
+    - wage_type: '004'
+      wage_type_desc: Übernachtung stpfl. 0%
+      bound_lower: 0.0
+      bound_upper: 5000.0
+    - wage_type: '005'
+      wage_type_desc: Nebenkosten stpfl. 0%
+      bound_lower: .na.real
+      bound_upper: .na.real
+    - wage_type: '006'
+      wage_type_desc: Nebenkosten stpfl. 7%
+      bound_lower: .na.real
+      bound_upper: .na.real
+    - wage_type: 008
+      wage_type_desc: Fahrkosten ÖPNV 7%
+      bound_lower: 0.0
+      bound_upper: 200.0
+    - wage_type: '010'
+      wage_type_desc: Fahrkosten 0%
+      bound_lower: 0.0
+      bound_upper: 200.0
+    - wage_type: '011'
+      wage_type_desc: Privat PKW - km Geld
+      bound_lower: 0.0
+      bound_upper: 500.0
+    - wage_type: '013'
+      wage_type_desc: Flugkosten 0%
+      bound_lower: 10.0
+      bound_upper: 300.0
+    - wage_type: '014'
+      wage_type_desc: Taxi bis 50 km 7%
+      bound_lower: 0.0
+      bound_upper: 150.0
+    - wage_type: '016'
+      wage_type_desc: Taxi 0%
+      bound_lower: 0.0
+      bound_upper: 20.0
+    - wage_type: '020'
+      wage_type_desc: Telefonkosten 0%
+      bound_lower: 20.0
+      bound_upper: 20.0
+    - wage_type: '022'
+      wage_type_desc: Nebenkosten 0%
+      bound_lower: 0.0
+      bound_upper: 20.0
+    - wage_type: '023'
+      wage_type_desc: Nebenkosten 7%
+      bound_lower: 0.0
+      bound_upper: 150.0
+    - wage_type: '025'
+      wage_type_desc: Gepäckaufbewahrung 0%
+      bound_lower: 0.0
+      bound_upper: 30.0
+    - wage_type: '027'
+      wage_type_desc: Seminarkosten 0%
+      bound_lower: 50.0
+      bound_upper: 150.0
+    - wage_type: 029
+      wage_type_desc: Rech. m. Tagungsp./VP 0%
+      bound_lower: 10.0
+      bound_upper: 400.0
+    - wage_type: '033'
+      wage_type_desc: DB Nachtzug 0%
+      bound_lower: .na.real
+      bound_upper: .na.real
+    - wage_type: 039
+      wage_type_desc: Tagegeld Ausland
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: '040'
+      wage_type_desc: Tagegeld Inland
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: '044'
+      wage_type_desc: Vorschuss Unbar
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: '045'
+      wage_type_desc: Vorschusseinbehalt
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: 048
+      wage_type_desc: Sachbezug Einbehalt
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: '052'
+      wage_type_desc: Überweisung
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: '053'
+      wage_type_desc: Privat PKW - km Geld stpf
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: '054'
+      wage_type_desc: Mietwagen 0%
+      bound_lower: 0.0
+      bound_upper: 200.0
+    - wage_type: '055'
+      wage_type_desc: Kraftstoff Mietwagen 0%
+      bound_lower: 0.0
+      bound_upper: 100.0
+    - wage_type: '060'
+      wage_type_desc: Barzahlung
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: '061'
+      wage_type_desc: Überzahlung
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: 080
+      wage_type_desc: Wegezeit-Entsch.
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: 081
+      wage_type_desc: Wegezeit-Entsch.Nachwuchs
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: '101'
+      wage_type_desc: Übernachtung 19%
+      bound_lower: 20.0
+      bound_upper: 200.0
+    - wage_type: '102'
+      wage_type_desc: Mietkosten 0%
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: '117'
+      wage_type_desc: Mietwagen 19%
+      bound_lower: 0.0
+      bound_upper: 200.0
+    - wage_type: '118'
+      wage_type_desc: Kraftstoff Mietwagen 19%
+      bound_lower: 0.0
+      bound_upper: 200.0
+    - wage_type: '119'
+      wage_type_desc: DB Nachtzug 19%
+      bound_lower: 0.0
+      bound_upper: 0.0
+    - wage_type: '121'
+      wage_type_desc: Telefonkosten 19%
+      bound_lower: .na.real
+      bound_upper: 20.0
+    - wage_type: '124'
+      wage_type_desc: Nebenkosten 19%
+      bound_lower: 0.0
+      bound_upper: 200.0
+    - wage_type: '126'
+      wage_type_desc: Gepäckaufbewahrung 19%
+      bound_lower: 0.0
+      bound_upper: 10.0
+    - wage_type: '128'
+      wage_type_desc: Seminar Kosten
+      bound_lower: 100.0
+      bound_upper: .na.real
+    - wage_type: '156'
+      wage_type_desc: Rech. m. Tagungsp./VP 19%
+      bound_lower: 10.0
+      bound_upper: 400.0
+    - wage_type: '201'
+      wage_type_desc: Übernachtung erm.USt.7%
+      bound_lower: 10.0
+      bound_upper: 1000.0
+    # - wage_type: .na.character
+    #   wage_type_desc: BV/Pü/Firmenreise ohne Tagegeld
+    #   bound_lower: .na.real
+    #   bound_upper: .na.real
+    # - wage_type: .na.character
+    #   wage_type_desc: Auschlussfist
+    #   bound_lower: .na.real
+    #   bound_upper: 6.0
+    # - wage_type: .na.character
+    #   wage_type_desc: Auschlussfist
+    #   bound_lower: .na.real
+    #   bound_upper: 12.0

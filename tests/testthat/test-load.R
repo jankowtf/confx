@@ -14,14 +14,34 @@ test_that("conf_load() works (call)", {
   # skip_on_travis()
   res <- conf_load(dir = test_path())
 
-  expect_equivalent(
+  # expect_equal(
+  #   res,
+  #   structure(
+  #     c(
+  #       "tests/testthat/conf_rules.yml" = "tests/testthat/conf_rules.yml",
+  #       "tests/testthat/config.yml" = "tests/testthat/config.yml",
+  #       "tests/testthat/config_002.yml" = "tests/testthat/config_002.yml",
+  #       "tests/testthat/config_003.yml" = "tests/testthat/config_003.yml",
+  #       "tests/testthat/config_openapi.yml" = "tests/testthat/config_openapi.yml"
+  #     ),
+  #     class = c("fs_path", "character")
+  #   )
+  # )
+  expect_equal(
     res,
-    structure(c("config.yml" = "config.yml",
-      "config_002.yml" = "config_002.yml",
-      "config_003.yml" = "config_003.yml",
-      "config_openapi.yml" = "config_openapi.yml"
-    ), class = c("fs_path", "character"))
+    structure(
+      c(
+        "conf_rules.yml" = "conf_rules.yml",
+        "config.yml" = "config.yml",
+        "config_002.yml" = "config_002.yml",
+        "config_003.yml" = "config_003.yml",
+        "config_openapi.yml" = "config_openapi.yml"
+      ),
+      class = c("fs_path", "character")
+    )
   )
+  # Note that path is relativ when running tests in batch!
+
 })
 
 test_that("conf_load() works (after)", {

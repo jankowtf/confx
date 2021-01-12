@@ -1,8 +1,7 @@
-context("Load conf files from dir")
 
-# Defaults ----------------------------------------------------------------
+# Load configs from dir ---------------------------------------------------
 
-test_that("Defaults work", {
+test_that("Load configs from dir", {
   # expect_equal(
   #   conf_load_from_dir(test_path()),
   #   c(
@@ -14,6 +13,7 @@ test_that("Defaults work", {
   expect_equal(
     fs::path_file(conf_load_from_dir(test_path())),
     c(
+      "conf_rules.yml",
       "config.yml",
       "config_002.yml",
       "config_003.yml",

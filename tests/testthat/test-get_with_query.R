@@ -778,3 +778,25 @@ test_that("Query: & + |: vector: no match", {
 #
 #   expect_identical(result, target)
 # })
+
+test_that("Query: ==: scalar: match: rules", {
+  skip("Rapid prototyping")
+  confx::conf_get(
+    "object_with_array/id=='a'",
+    from = "config_003.yml",
+    dir_from = dir_from,
+    force_from_file = TRUE
+  )
+
+  result <- conf_get(
+    "wage_types/wage_type=='002'",
+    from = "conf_rules.yml",
+    dir_from = dir_from,
+    force_from_file = TRUE,
+    verbose = TRUE
+  )
+
+  target <- list(list(id = "a", value = 1L))
+
+  expect_identical(result, target)
+})

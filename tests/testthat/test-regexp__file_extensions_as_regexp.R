@@ -1,7 +1,4 @@
-
-# Defaults ----------------------------------------------------------------
-
-context("File extensions as regexp pattern: defaults")
+# File extensions as regexp pattern: defaults -----------------------------
 
 test_that("Keeping all defaults works", {
   expect_identical(
@@ -10,9 +7,7 @@ test_that("Keeping all defaults works", {
   )
 })
 
-# Prefixes ----------------------------------------------------------------
-
-context("File extensions as regexp pattern: prefixes")
+# File extensions as regexp pattern: prefixes -----------------------------
 
 test_that("Custom prefix works", {
   expect_identical(
@@ -30,9 +25,7 @@ test_that("Empty prefix works", {
   )
 })
 
-# Suffixes ----------------------------------------------------------------
-
-context("File extensions as regexp pattern: suffixes")
+# File extensions as regexp pattern: suffixes -----------------------------
 
 test_that("Custom suffix works", {
   expect_identical(
@@ -50,9 +43,7 @@ test_that("Empty suffix works", {
   )
 })
 
-# Parenthesis -------------------------------------------------------------
-
-context("File extensions as regexp pattern: parenthesis")
+# File extensions as regexp pattern: parenthesis --------------------------
 
 test_that("No parentheses work", {
   expect_identical(
@@ -62,9 +53,7 @@ test_that("No parentheses work", {
   )
 })
 
-# Escaping dots -----------------------------------------------------------
-
-context("File extensions as regexp pattern: escaping of dots")
+# File extensions as regexp pattern: escaping of dots ---------------------
 
 test_that("Not escaping dots works", {
   expect_identical(

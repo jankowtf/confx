@@ -20,7 +20,7 @@ test_that("conf_assign() works", {
 
   env <- environment()
   res <- conf_assign(configs, env = env, dir_from = dir_from)
-  expect_is(res, "list")
+  expect_type(res, "list")
   expect_length(res, 3)
   expect_true(exists(".col_id", envir = env, inherits = FALSE))
   expect_true(exists(".col_name", envir = env, inherits = FALSE))
@@ -44,7 +44,7 @@ test_that("conf_assign() works (reference)", {
 
   env <- environment()
   res <- conf_assign(configs, env = env, dir_from = dir_from)
-  expect_is(res, "list")
+  expect_type(res, "list")
   expect_length(res, 2)
   expect_true(exists(".col_id", envir = env, inherits = FALSE))
   expect_true(exists(".col_value", envir = env, inherits = FALSE))
@@ -57,7 +57,7 @@ test_that("conf_assign() works (reference non-standard file)", {
 
   env <- environment()
   res <- conf_assign(configs, env = env, from = from, dir_from = dir_from)
-  expect_is(res, "list")
+  expect_type(res, "list")
   expect_length(res, 3)
   expect_true(exists(".col_group", envir = env, inherits = FALSE))
   expect_true(exists(".col_id", envir = env, inherits = FALSE))
