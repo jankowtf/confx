@@ -1,6 +1,6 @@
 Package: confx
 Title: Extended functionality for YAML-based config files
-Version: 0.0.0.9022
+Version: 0.0.0.9023
 Authors@R: 
     person(given = "Janko",
            family = "Thyson",
@@ -22,7 +22,8 @@ Imports:
     rlang,
     stringr,
     usethis,
-    valid
+    valid,
+    here
 Suggests: 
     covr,
     devtools,

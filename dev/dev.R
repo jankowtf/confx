@@ -35,6 +35,7 @@ usethis::use_package("pkgload")
 usethis::use_package("purrr")
 usethis::use_package("valid")
 usethis::use_package("clipr", type = "Suggests")
+usethis::use_package("here")
 
 # Tests -------------------------------------------------------------------
 

@@ -120,10 +120,20 @@ test_that("Temporary switch of config environment", {
 # Absolute file paths -----------------------------------------------------
 
 test_that("Absolute file paths", {
-  "inst/configs/config.yml" %>% fs::path_abs() %>% print()
   result <- conf_get(
     "host/server_001",
     from = "inst/configs/config.yml" %>% fs::path_abs(),
+    force_from_file = TRUE
+  )
+
+  expectation <- list(url = "https://dev-server-001.com", port = 8000L)
+
+  expect_identical(result, expectation)
+
+  result <- conf_get(
+    "host/server_001",
+    from = "config.yml",
+    dir_from = "inst/configs" %>% fs::path_abs(),
     force_from_file = TRUE
   )
 

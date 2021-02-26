@@ -1,3 +1,11 @@
+# confx 0.0.0.9023 (2021-02-26)
+
+Added package dependency {here}
+
+- Added package dependency {here} to `Imports`
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9022 (2021-01-12)
 
 Absolute paths
