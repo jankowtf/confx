@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.0.3",
+    "Version": "4.0.4",
     "Repositories": [
       {
         "Name": "RSPM",
@@ -655,22 +655,10 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "0.12.3",
+      "Version": "0.13.1",
       "Source": "Repository",
       "Repository": "RSPM",
-      "Hash": "b5510c50c7f31d453c385c7b460af2b9"
-    },
-    "renvx": {
-      "Package": "renvx",
-      "Version": "0.0.0.9002",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "rappster",
-      "RemoteRepo": "renvx",
-      "RemoteRef": "master",
-      "RemoteSha": "7b40b79b1b73fc7e17c08d222eff44dea0046fa2",
-      "Hash": "69b588bb02df0af18e373bf2c295b39f"
+      "Hash": "be02499761baab60d58b808efd08c3fc"
     },
     "reshape2": {
       "Package": "reshape2",

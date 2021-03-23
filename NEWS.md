@@ -1,3 +1,9 @@
+# confx 0.0.0.9024 (2021-03-23)
+
+Removed accidental dependency on `renvx`
+
+--------------------------------------------------------------------------------
+
 # confx 0.0.0.9023 (2021-02-26)
 
 Added package dependency {here}

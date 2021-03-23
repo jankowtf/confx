@@ -1,6 +1,6 @@
 Package: confx
 Title: Extended functionality for YAML-based config files
-Version: 0.0.0.9023
+Version: 0.0.0.9024
 Authors@R: 
     person(given = "Janko",
            family = "Thyson",

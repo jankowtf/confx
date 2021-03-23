@@ -6,6 +6,8 @@ packages <- renvx::extract_packages_for_renv_install()
 
 renv::install(packages, rebuild = TRUE, type = getOption("pkgType"))
 
+renv::remove("renvx")
+
 # Somehow not all packages were installed from RSPM.
 # But seems to be the case when explicitly forcing type = "binary"
 renv::install(
